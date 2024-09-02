@@ -1,8 +1,16 @@
 import React from 'react'
+import { Outlet } from 'react-router'
+import Navbar from './components/Navbar'
+import Banner from './components/Banner'
 
 const App = () => {
   return (
-    <div>App</div>
+    <>
+    <Navbar/>
+    <Banner/>
+    <Outlet/>
+    </>
+    
   )
 }
 
