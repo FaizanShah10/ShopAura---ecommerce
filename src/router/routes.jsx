@@ -5,6 +5,7 @@ import {
 
 
 import App from "../App";
+import Home from "../pages/Home";
 
 
   const router = createBrowserRouter([
@@ -14,7 +15,8 @@ import App from "../App";
 
       children: [
         {
-            
+          path: "/",
+          element: <Home/>,
         }
       ]
     },
