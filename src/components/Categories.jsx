@@ -41,7 +41,7 @@ const Categories = () => {
 
             <div className='flex lg:flex-row flex-col justify-center gap-24 font-[Gilroy-Medium]'>
                 {categoriesData.map(category => (
-                    <Link to={`categories/${category.path}`} key={category.id} className='flex flex-col items-center'>
+                    <Link to={`categories/${category.path}`} key={category.id} className='flex flex-col items-center hover:scale-105 transition-all duration-300'>
                         <div className='w-28 h-28 shadow-md rounded-full relative overflow-hidden'>
                             <img src={category.image} alt={category.title} className="w-full h-full object-cover" />
                         </div>

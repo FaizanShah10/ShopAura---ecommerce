@@ -1,24 +1,33 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import "../App.css"
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-// import { Autoplay } from 'swiper'; // Import Autoplay module
-
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import bagImage1 from "../assets/Bag-1.png"
 
 const Banner = () => {
+    // const progressCircle = useRef(null);
+    // const progressContent = useRef(null);
+
+    // const onAutoplayTimeLeft = (s, time, progress) => {
+    //     // progressCircle.current.style.setProperty('--progress', 1 - progress);
+    //     progressContent.current.textContent = `${Math.ceil(time / 1000)}s`;
+    //   };
+
   return (
     <>
     <Swiper
     spaceBetween={30}
     className="mySwiper"
-    autoplay={{
-    delay: 5000, // Timer between each slide (5 seconds)
-    disableOnInteraction: false, // Autoplay continues even after user interaction
-  }}
-//   modules={[Autoplay]}
+    // autoplay={{
+    //     delay: 2500,
+    //     disableOnInteraction: false,
+    //   }}
+    //   modules={[Autoplay, Pagination, Navigation]}
+    //   onAutoplayTimeLeft={onAutoplayTimeLeft}
+
   loop={true}
     >
             <SwiperSlide>
@@ -95,6 +104,10 @@ const Banner = () => {
 
                     </div>
             </SwiperSlide>
+
+            {/* <div>
+                <span ref={progressContent}></span>
+            </div> */}
             
 
     </Swiper>
