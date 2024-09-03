@@ -14,7 +14,7 @@ const TrendingProducts = () => {
       <p className='text-center text-gray-600'>Elevate your style with out latest girls fashion trending products</p>
 
       {/* Products Card */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 p-16'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 px-36 py-16'>
         {Products.map((product) => {
           // Determine the number of filled and empty stars based on the product rating
           const filledStars = Math.floor(product.rating);
@@ -48,7 +48,14 @@ const TrendingProducts = () => {
             </Link>
           )
         })}
+      
       </div>
+      <div className='flex justify-center mb-10'>
+        <Link to={`shop/products`} className=' hover:bg-red-800 duration-200 px-4 py-2 rounded-md bg-red-700 text-white font-semibold '>Show All Products</Link>
+      </div>
+
+
+      
     </div>
   )
 }
