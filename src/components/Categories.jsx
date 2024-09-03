@@ -39,7 +39,7 @@ const Categories = () => {
         <div>
             <h2 className='text-center p-16 text-3xl font-semibold font-[Gilroy-Medium]'>Categories</h2>
 
-            <div className='flex justify-center gap-24 font-[Gilroy-Medium]'>
+            <div className='flex lg:flex-row flex-col justify-center gap-24 font-[Gilroy-Medium]'>
                 {categoriesData.map(category => (
                     <Link to={`categories/${category.path}`} key={category.id} className='flex flex-col items-center'>
                         <div className='w-28 h-28 shadow-md rounded-full relative overflow-hidden'>
