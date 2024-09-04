@@ -4,6 +4,9 @@ import Categories from '../components/Categories'
 import Trending from '../components/Trending'
 import TrendingProducts from '../components/TrendingProducts'
 import Deal from '../components/Deal'
+import PromoBanner from '../components/PromoBanner'
+import Blogs from "../components/Blogs"
+import Footer from "../components/Footer"
 
 const Home = () => {
   return (
@@ -13,6 +16,9 @@ const Home = () => {
         <Trending/>
         <TrendingProducts/>
         <Deal/>
+        <PromoBanner/>
+        <Blogs/>
+        <Footer/>
     </div>
   )
 }

@@ -9,12 +9,12 @@ const TrendingProducts = () => {
 
   return (
     <div>
-      <h1 className='text-center text-3xl font-[Gilroy-Medium] mb-2'>Trending Products</h1>
+      <h1 className='text-center text-3xl font-[Gilroy-Bold] mb-2'>Trending Products</h1>
       <p className='text-center text-gray-600'>Explore our latest trending products</p>
       <p className='text-center text-gray-600'>Elevate your style with out latest girls fashion trending products</p>
 
       {/* Products Card */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 px-36 py-16'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 px-10 lg:px-24 py-16'>
         {Products.map((product) => {
           // Determine the number of filled and empty stars based on the product rating
           const filledStars = Math.floor(product.rating);

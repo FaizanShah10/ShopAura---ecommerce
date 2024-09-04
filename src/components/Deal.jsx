@@ -6,7 +6,7 @@ import "../App.css"
 const Deal = () => {
   return (
     <>
-      <div className='flex justify-center'>
+      <div className='lg:flex lg:justify-center md:flex md:justify-center hidden'>
         <div className='w-[80vw] h-[27vw] bg-pink-200 rounded-lg flex justify-center items-center p-8 gap-20 overflow-hidden'>
           {/* Image on the left */}
           <div className='w-[40%] h-auto'>
@@ -40,7 +40,6 @@ const Deal = () => {
            </div>
         </div>
       </div>
-      <h2>ldfhjdsahf</h2>
     </>
   )
 }
