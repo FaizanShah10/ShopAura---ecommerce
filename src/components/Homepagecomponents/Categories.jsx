@@ -1,10 +1,11 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-import Accessories from "../assets/Accessories.jpg"
-import Sandles from "../assets/Sandles.webp"
-import Bag from "../assets/bag.jpg"
-import Dress from "../assets/dress.jpg"
+import Accessories from "../../assets/Accessories.jpg"
+import Sandles from "../../assets/Sandles.webp"
+import Bag from "../../assets/bag.jpg"
+import Dress from "../../assets/dress.jpg"
+import Jewellery from "../../assets/Jewellery.webp"
 
 const Categories = () => {
 
@@ -30,16 +31,22 @@ const Categories = () => {
         {   
             id: 4,
             image: Dress,
-            path: 'dresses',
+            path: 'dress',
             title: "Dress",
+        },
+        {   
+            id: 5,
+            image: Jewellery,
+            path: 'jewellery',
+            title: "Jewellery",
         }
     ];
 
     return (
-        <div>
+        <div className='max-w-[60vw] mx-auto'>
             <h2 className='text-center p-16 text-3xl font-semibold font-[Gilroy-Medium]'>Categories</h2>
 
-            <div className='flex lg:flex-row flex-col justify-center gap-24 font-[Gilroy-Medium]'>
+            <div className='grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 place-items-center lg:gap-0 gap-20 font-[Gilroy-Medium]'>
                 {categoriesData.map(category => (
                     <Link to={`categories/${category.path}`} key={category.id} className='flex flex-col items-center hover:scale-105 transition-all duration-300'>
                         <div className='w-28 h-28 shadow-md rounded-full relative overflow-hidden'>

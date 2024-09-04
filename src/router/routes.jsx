@@ -6,6 +6,9 @@ import {
 
 import App from "../App";
 import Home from "../pages/Home";
+import Shop from "../pages/Shop"
+import CategoryPage from "../pages/Category/CategoryPage"
+import Search from "../pages/Search";
 
 
   const router = createBrowserRouter([
@@ -17,6 +20,18 @@ import Home from "../pages/Home";
         {
           path: "/",
           element: <Home/>,
+        },
+        {
+          path: "/shop",
+          element: <Shop/>
+        },
+        {
+          path: '/search',
+          element: <Search/>
+        },
+        {
+          path: `/categories/:categoryName`,
+          element: <CategoryPage/>
         }
       ]
     },

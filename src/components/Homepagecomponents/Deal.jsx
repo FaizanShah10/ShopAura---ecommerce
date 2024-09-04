@@ -1,7 +1,7 @@
 import React from 'react'
-import Deals from "../assets/deals.png"
+import Deals from "../../assets/deals.png"
 
-import "../App.css"
+import "../../App.css"
 
 const Deal = () => {
   return (

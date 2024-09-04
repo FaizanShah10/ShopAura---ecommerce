@@ -1,11 +1,11 @@
 import React from 'react'
 import Banner from '../components/Banner'
-import Categories from '../components/Categories'
-import Trending from '../components/Trending'
-import TrendingProducts from '../components/TrendingProducts'
-import Deal from '../components/Deal'
-import PromoBanner from '../components/PromoBanner'
-import Blogs from "../components/Blogs"
+import Categories from '../components/Homepagecomponents/Categories'
+import Trending from '../components/Homepagecomponents/Trending'
+import TrendingProducts from '../components/Homepagecomponents/TrendingProducts'
+import Deal from '../components/Homepagecomponents/Deal'
+import PromoBanner from '../components/Homepagecomponents/PromoBanner'
+import Blogs from "../components/Homepagecomponents/Blogs"
 import Footer from "../components/Footer"
 
 const Home = () => {

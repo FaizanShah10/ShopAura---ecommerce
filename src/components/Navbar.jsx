@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import { IoSearch } from "react-icons/io5";
+
 const Navbar = () => {
 
     const [showMenu, setShowMenu] = useState(false);
@@ -16,19 +18,19 @@ const Navbar = () => {
 
                         <div className="flex items-center space-x-8">
                             <div className="shrink-0">
-                                <a href="#" title="" className="">
+                                <a href="/" title="" className="">
                                     <h2 className="text-black font-semibold text-2xl">SHOP AURA</h2>
                                 </a>
                             </div>
 
                             <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
                                 <li>
-                                    <a href="#" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
+                                    <a href="/" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
                                         Home
                                     </a>
                                 </li>
                                 <li className="shrink-0">
-                                    <a href="#" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
+                                    <a href="/shop" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
                                         Shop
                                     </a>
                                 </li>
@@ -46,6 +48,10 @@ const Navbar = () => {
                         </div>
 
                         <div className="flex items-center lg:space-x-2">
+
+                            <button className='p-2'>
+                                <a href="/search"><IoSearch className='w-4 h-4'/></a>
+                            </button>
 
                             <button id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 hover:text-white dark:hover:bg-[#9A0000] text-sm font-medium leading-none text-black dark:text-black">
                                 <span className="sr-only">

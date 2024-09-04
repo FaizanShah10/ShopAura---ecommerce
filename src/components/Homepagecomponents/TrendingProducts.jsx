@@ -1,5 +1,5 @@
 import React from 'react'
-import Products from "../../public/Products.json"
+import Products from "../../../public/Products.json"
 import {Link} from 'react-router-dom'
 
 import { MdOutlineShoppingCart } from "react-icons/md";

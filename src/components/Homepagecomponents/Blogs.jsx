@@ -1,5 +1,5 @@
 import React from 'react'
-import HangingClothes from "../assets/clothes-hanged.jpg"
+import HangingClothes from "../../assets/clothes-hanged.jpg"
 
 const Blogs = () => {
   return (

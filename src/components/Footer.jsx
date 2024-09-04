@@ -24,13 +24,13 @@ const Footer = () => {
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-black">Contact info</h2>
                   <ul class="text-gray-500 dark:text-gray-800 font-medium">
                       <li class="mb-4">
-                          <p className='flex items-center gap-1 text-sm'><span><FaLocationDot /></span>Abbotabad, Pakistan</p>
+                          <p className='flex items-center gap-1 text-sm'><span className='text-red-700'><FaLocationDot /></span>Abbotabad, Pakistan</p>
                       </li>
                       <li className='mb-4'>
-                      <p className='flex items-center gap-1 text-sm'><span><MdEmail /></span>shopaura@gmail.com</p>
+                      <p className='flex items-center gap-1 text-sm'><span className='text-red-700'><MdEmail /></span>shopaura@gmail.com</p>
                       </li>
                       <li>
-                      <p className='flex items-center gap-1 text-sm'><span><FaPhoneAlt /></span>+92 123 456 789</p>
+                      <p className='flex items-center gap-1 text-sm'><span className='text-red-700'><FaPhoneAlt /></span>+92 123 456 789</p>
                       </li>
                   </ul>
               </div>
@@ -38,10 +38,10 @@ const Footer = () => {
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-black">Follow us</h2>
                   <ul class="text-gray-500 dark:text-gray-800 font-medium">
                       <li class="mb-4">
-                      <p className='flex items-center gap-1 text-sm'><span><FaInstagram /></span>Instagram</p>
+                      <p className='flex items-center gap-1 text-sm'><span className='text-red-700'><FaInstagram /></span>Instagram</p>
                       </li>
                       <li>
-                      <p className='flex items-center gap-1 text-sm'><span><BiLogoFacebookSquare /></span>Facebook</p>
+                      <p className='flex items-center gap-1 text-sm'><span className='text-red-700'><BiLogoFacebookSquare /></span>Facebook</p>
                       </li>
                   </ul>
               </div>

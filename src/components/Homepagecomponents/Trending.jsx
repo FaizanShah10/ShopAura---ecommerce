@@ -1,8 +1,8 @@
 import React from 'react'
 
-import CasualShirts from "../assets/CasualShirts.jpg"
-import Gymwear from "../assets/Gymwear.webp"
-import Bag from "../assets/bag.jpg"
+import CasualShirts from "../../assets/CasualShirts.jpg"
+import Gymwear from "../../assets/Gymwear.webp"
+import Bag from "../../assets/bag.jpg"
 
 
 const Trending = () => {
