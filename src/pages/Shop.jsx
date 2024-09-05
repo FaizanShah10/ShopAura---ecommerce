@@ -261,7 +261,7 @@ const Shop = () => {
                 const emptyStars = 5 - filledStars;
 
                 return (
-                  <Link to={`/shop/${product.id}`} key={product.id} className='relative hover:scale-105 transition-transform duration-300'>
+                  <Link to={`/product/${product.id}`} key={product.id} className='relative hover:scale-105 transition-transform duration-300'>
                     <img
                       className='w-full h-48 object-cover rounded-sm'
                       src={product.image}

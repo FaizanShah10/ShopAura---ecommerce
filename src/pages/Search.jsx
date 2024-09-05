@@ -54,7 +54,7 @@ const Search = () => {
             const emptyStars = 5 - filledStars;
 
             return (
-              <Link to={`/shop/${product.id}`} key={product.id} className='w-38 h-38 relative hover:scale-105 transition-all duration-300'>
+              <Link to={`/product/${product.id}`} key={product.id} className='w-38 h-38 relative hover:scale-105 transition-all duration-300'>
                 <img className='h-56 w-96 object-cover rounded-sm' src={product.image} alt={product.name} />
                 <div className='absolute top-3 right-3'>
                   <button className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
