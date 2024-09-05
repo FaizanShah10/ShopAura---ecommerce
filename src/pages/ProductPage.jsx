@@ -5,7 +5,14 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FaShoppingBag } from "react-icons/fa";
 import Sandles from '../assets/Sandles.webp'
 
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/features/cartSlice';
+
 const ProductPage = () => {
+
+  const dispatch = useDispatch();
+
+
   const  {id} = useParams()
   console.log(id)
   return (
@@ -45,7 +52,7 @@ const ProductPage = () => {
 
           {/* Cart Button */}
           <div className='mt-4'>
-            <button className='bg-red-700 rounded-md flex items-center justify-center lg:w-[25vw] w-full py-3 text-white gap-2'><span><FaShoppingBag /></span>Add to Cart</button>
+            <button onClick={() => dispatch(addToCart(product))} className='bg-red-700 rounded-md flex items-center justify-center lg:w-[25vw] w-full py-3 text-white gap-2'><span><FaShoppingBag /></span>Add to Cart</button>
           </div>
         </div>
       </div>

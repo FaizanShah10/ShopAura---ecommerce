@@ -4,11 +4,15 @@ import Products from "../../public/Products.json";
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { HiStar, HiOutlineStar } from "react-icons/hi2";
 
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../redux/features/cartSlice';
+
 const filters = {
+  
   categories: ['all', 'accessories', 'dress', 'cosmetics', 'jewellery'],
   colors: ['all', 'red', 'gold', 'pink', 'black', 'blue'],
   priceRange: [
@@ -23,6 +27,9 @@ const filters = {
 }
 
 const Shop = () => {
+  const navigate = useNavigate()
+  
+  const dispatch = useDispatch();
   // State for filtered products
   const [filteredProducts, setFilteredProducts] = useState(Products);
 
@@ -261,18 +268,21 @@ const Shop = () => {
                 const emptyStars = 5 - filledStars;
 
                 return (
-                  <Link to={`/product/${product.id}`} key={product.id} className='relative hover:scale-105 transition-transform duration-300'>
+                  <Link  key={product.id} className='relative hover:scale-105 transition-transform duration-300'>
                     <img
+                      onClick={() => navigate(`/product/${product.id}`)}
                       className='w-full h-48 object-cover rounded-sm'
                       src={product.image}
                       alt={product.name}
                     />
+
                     <div className='absolute top-3 right-3'>
-                      <button className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
+                      <button onClick={() => dispatch(addToCart(product))} className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
                         <MdOutlineShoppingCart className='text-white' />
                       </button>
                     </div>
-                    <div className='text-center mt-4 px-2'>
+
+                    <div onClick={() => navigate(`/product/${product.id}`)} className='text-center mt-4 px-2'>
                       <p className='text-sm font-semibold font-[Gilroy-Bold]'>{product.name}</p>
                       <div className='flex justify-center items-center space-x-1 mt-2'>
                         {[...Array(filledStars)].map((_, i) => (
