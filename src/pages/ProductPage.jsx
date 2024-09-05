@@ -10,18 +10,20 @@ const ProductPage = () => {
   console.log(id)
   return (
     <div>
-      <div className='flex gap-2 px-32 py-6'>
+      <div className='flex gap-2  px-32 py-6'>
         <Link className='flex items-center underline text-red-700' to={'/'}>Home <span><IoIosArrowForward /></span></Link>
         <Link className='flex items-center underline text-red-700' to={'/shop'}>Shop <span><IoIosArrowForward /></span></Link>
         <Link className='flex items-center text-red-700'>Product Name</Link>
       </div>
 
-      <div className='flex '>
-        <div className='w-[32vw] h-[32vw] ml-32'>
+
+      {/* Product */}
+      <div className='flex md:flex-row sm:flex-col flex-col  lg:flex-row'>
+        <div className='lg:w-[32vw] lg:h-[32vw]  sm:w-[60vw] sm:h-[50vw] lg:ml-32 ml-0 lg:p-0 p-10'>
           <img className='rounded-md' src={Sandles} alt="" />
         </div>
 
-        <div className='ml-20'>
+        <div className='lg:ml-20 ml-0 p-4 lg:p-0'>
           <h1 className='text-2xl font-bold  mt-8 font-[Gilroy-Medium]'>Product Name</h1>
           <h2>reviews</h2>
           <p className='mt-10 text-2xl font-[Gilroy-Medium]'>Price</p>
@@ -37,13 +39,13 @@ const ProductPage = () => {
 
           {/* Description */}
           <h2 className='font-[Gilroy-Medium] text-xl mt-6'>Description</h2>
-          <div className='w-[30vw] mt-2'>
+          <div className='lg:w-[30vw] w-full mt-2'>
             <p className='text-gray-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum aspernatur unde eaque omnis quia voluptatum numquam pariatur voluptatibus facere.</p>
           </div>
 
           {/* Cart Button */}
           <div className='mt-4'>
-            <button className='bg-red-700 rounded-md flex items-center justify-center w-[25vw] py-3 text-white gap-2'><span><FaShoppingBag /></span>Add to Cart</button>
+            <button className='bg-red-700 rounded-md flex items-center justify-center lg:w-[25vw] w-full py-3 text-white gap-2'><span><FaShoppingBag /></span>Add to Cart</button>
           </div>
         </div>
       </div>
