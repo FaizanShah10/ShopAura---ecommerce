@@ -2,12 +2,20 @@ import { createSlice } from '@reduxjs/toolkit'
 
 
 const initialState = {
-    cartItems: [],
-    totalProducts: 0,
-    totalAmount: 0,
-    tax: 0,
-    grandTotal: 0
+    cartItems: JSON.parse(localStorage.getItem('cartItems')) || [],
+    totalProducts: JSON.parse(localStorage.getItem('totalProducts')) || 0,
+    totalAmount: JSON.parse(localStorage.getItem('totalAmount')) || 0,
+    tax: JSON.parse(localStorage.getItem('tax')) || 0,
+    grandTotal: JSON.parse(localStorage.getItem('grandTotal')) || 0
 }
+
+const saveCartToLocalStorage = (cartState) => {
+    localStorage.setItem('cartItems', JSON.stringify(cartState.cartItems));
+    localStorage.setItem('totalProducts', JSON.stringify(cartState.totalProducts));
+    localStorage.setItem('totalAmount', JSON.stringify(cartState.totalAmount));
+    localStorage.setItem('tax', JSON.stringify(cartState.tax));
+    localStorage.setItem('grandTotal', JSON.stringify(cartState.grandTotal));
+};
 
 export const cartSlice = createSlice({
     name: 'cart',
@@ -36,6 +44,8 @@ export const cartSlice = createSlice({
             //grand total
             state.grandTotal = state.totalAmount + state.tax
 
+            saveCartToLocalStorage(state)
+
         },
         removeFromCart: (state, action) => {
             const itemId = action.payload
@@ -46,9 +56,28 @@ export const cartSlice = createSlice({
             state.totalAmount = state.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
             state.tax = state.totalAmount * 0.05; 
             state.grandTotal = state.totalAmount + state.tax;
-        }  
+
+            saveCartToLocalStorage(state)
+        },
+        //update cartItems quantity
+        updateCartItems: (state, action) => {
+            const {id, quantity} = action.payload
+
+            const product = state.cartItems.find((item) => item.id === id)
+
+            if(product && quantity > 0){
+                const quantityDifference = quantity - product.quantity
+                product.quantity = quantity
+
+                //updating totals
+                state.totalProducts += quantityDifference
+                state.totalAmount += product.price * quantityDifference
+                state.tax = state.totalAmount * 0.05
+                state.grandTotal = state.totalAmount + state.tax
+            }
+        }
     }
 })
 
-export const {addToCart, removeFromCart} = cartSlice.actions //export action
+export const {addToCart, removeFromCart, updateCartItems} = cartSlice.actions //export action
 export default cartSlice.reducer //export reducer

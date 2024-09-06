@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 import { useSelector, useDispatch } from 'react-redux';
-import {removeFromCart} from '../redux/features/cartSlice'
+import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
 
 
 
@@ -29,6 +29,10 @@ const Navbar = () => {
 
     const handleRemoveItems = (id) => {
         dispatch(removeFromCart(id))
+    }
+
+    const handleUpdateCart = (id, newQuantity) => {
+        dispatch(updateCartItems({id, quantity: newQuantity}))
     }
 
     return (
@@ -101,10 +105,10 @@ const Navbar = () => {
                     <div id="ecommerce-navbar-menu-1" className={`${showMenu ? '' : 'hidden'} bg-gray-50 dark:bg-white dark:border-white border border-gray-200 rounded-lg py-3 px-4 mt-4`}>
                         <ul className="text-black dark:text-black text-sm font-medium space-y-3">
                             <li>
-                                <a href="#" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Home</a>
+                                <a href="/" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Home</a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Shop</a>
+                                <a href="/shop" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Shop</a>
                             </li>
                             <li>
                                 <a href="#" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Categories</a>
@@ -147,9 +151,9 @@ const Navbar = () => {
                                                 </div>
 
                                                 <div className='flex gap-2 mt-3 ml-10'>
-                                                    <button  className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>-</button>
+                                                    <button onClick={() => handleUpdateCart(item.id, item.quantity - 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>-</button>
                                                     <p>{item.quantity}</p>
-                                                    <button  className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>+</button>
+                                                    <button onClick={() => handleUpdateCart(item.id, item.quantity + 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>+</button>
                                                 </div>
 
                                                 <p onClick={() => handleRemoveItems(item.id)} className='text-sm text-red-500 mt-3 ml-10 cursor-pointer'>Remove</p>
