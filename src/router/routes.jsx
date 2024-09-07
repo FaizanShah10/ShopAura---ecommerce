@@ -11,6 +11,9 @@ import CategoryPage from "../pages/Category/CategoryPage"
 import Search from "../pages/Search";
 import ProductPage from "../pages/ProductPage";
 
+import Login from '../pages/Login'
+import Register from '../pages/Register'
+
 
   const router = createBrowserRouter([
     {
@@ -40,6 +43,14 @@ import ProductPage from "../pages/ProductPage";
         }
       ]
     },
+    {
+      path: '/login',
+      element: <Login/>
+    },
+    {
+      path: '/register',
+      element: <Register/>
+    }
   ]);
 
   export default router

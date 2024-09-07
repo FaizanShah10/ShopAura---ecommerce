@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
+import { TbLogout2 } from "react-icons/tb";
 import { useSelector, useDispatch } from 'react-redux';
+
+import {Link} from 'react-router-dom'
 import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
 
 
@@ -15,6 +18,11 @@ const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
     const [products, setProducts] = useState(cartItems)
+    const [openAccount, setOpenAccount] = useState(false)
+
+    const handleShowAccount = () => {
+        setOpenAccount(!openAccount)
+    }
 
     
 
@@ -85,7 +93,7 @@ const Navbar = () => {
                                 {/* <span className="hidden sm:flex">My Cart</span> */}
                             </button>
 
-                            <button id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-[#9A0000] hover:text-white text-sm font-medium leading-none text-black dark:text-black">
+                            <button onClick={handleShowAccount} id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-[#9A0000] hover:text-white text-sm font-medium leading-none text-black dark:text-black">
                                 <svg className="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                                 </svg>
@@ -185,6 +193,33 @@ const Navbar = () => {
 
                 
             )}
+
+            {
+                openAccount && (
+                    <div className={`fixed z-[100] mt-[80px] bg-black bg-opacity-80 inset-0 transition-opacity ${openAccount ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                    style={{transition: 'opacity 300ms'}}
+                    >
+                        <div className={`fixed mt-[80px] right-32 top-0 bg-white rounded-md md:w-[13.5vw] w-full h-[13vw] overflow-y-auto transition-transform ${openAccount ? 'translate-x-100' : 'translate-x-0'}`}
+                        style={{transition: 'transform 300ms cubic-bazier(0.25, 0.46, 0.45, 0.94)'}}
+                        >
+                                <div className='pt-6 pl-3 pr-3 flex flex-col'>
+                                    <Link className='' to={'/register'}>
+                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Create Account</button>
+                                    </Link>
+
+                                    <Link to={'/login'}>
+                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 text-left mb-10' >Login</button>
+                                    </Link>
+                                    <hr className=' border-gray-400'/>
+                                    
+                                    <Link to={'/'}>
+                                        <button className='font-[Gilroy-Medium] relative pt-3 flex gap-2 items-center hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3'><span><TbLogout2 /></span>Logout</button>
+                                    </Link>
+                                </div>
+                        </div>
+                    </div>
+                )
+            }
         </>
     );
 };
