@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios'
 
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
 
 
 
 const Navbar = () => {
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
 
@@ -25,8 +28,6 @@ const Navbar = () => {
     }
 
     
-
-
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
     };
@@ -41,6 +42,15 @@ const Navbar = () => {
 
     const handleUpdateCart = (id, newQuantity) => {
         dispatch(updateCartItems({id, quantity: newQuantity}))
+    }
+
+    const handleLogout = async () => {
+        try {
+            await axios.post('http://localhost:8000/user/logout', {}, {withCredentials: true})
+            navigate('/login')
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     return (
@@ -199,21 +209,33 @@ const Navbar = () => {
                     <div className={`fixed z-[100] mt-[80px] bg-black bg-opacity-80 inset-0 transition-opacity ${openAccount ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                     style={{transition: 'opacity 300ms'}}
                     >
-                        <div className={`fixed mt-[80px] right-32 top-0 bg-white rounded-md md:w-[13.5vw] w-full h-[13vw] overflow-y-auto transition-transform ${openAccount ? 'translate-x-100' : 'translate-x-0'}`}
+                        <div className={`fixed mt-[80px] right-32 top-0 bg-white rounded-md md:w-[13.5vw] w-full h-auto overflow-y-auto transition-transform ${openAccount ? 'translate-x-100' : 'translate-x-0'}`}
                         style={{transition: 'transform 300ms cubic-bazier(0.25, 0.46, 0.45, 0.94)'}}
                         >
                                 <div className='pt-6 pl-3 pr-3 flex flex-col'>
+                                    <Link className='' to={'/dashboard'}>
+                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Dashbaord</button>
+                                    </Link>
+
+                                    <Link className='' to={'/profile'}>
+                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Profile</button>
+                                    </Link>
+
+                                    <Link className='' to={'/orders'}>
+                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Orders</button>
+                                    </Link>
+
                                     <Link className='' to={'/register'}>
                                         <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Create Account</button>
                                     </Link>
 
                                     <Link to={'/login'}>
-                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 text-left mb-10' >Login</button>
+                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 text-left mb-6' >Login</button>
                                     </Link>
                                     <hr className=' border-gray-400'/>
                                     
                                     <Link to={'/'}>
-                                        <button className='font-[Gilroy-Medium] relative pt-3 flex gap-2 items-center hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3'><span><TbLogout2 /></span>Logout</button>
+                                        <button onClick={handleLogout} className='font-[Gilroy-Medium] relative pt-3 mb-2 flex gap-2 items-center hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3'><span><TbLogout2 /></span>Logout</button>
                                     </Link>
                                 </div>
                         </div>

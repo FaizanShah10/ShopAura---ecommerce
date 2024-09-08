@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
+
+import axios from 'axios'
+import { useNavigate } from 'react-router'
 
 const Login = () => {
 
+  const navigate = useNavigate()
+
   const {register, handleSubmit} = useForm()
 
-  const handleLogin = (data) => {
-    console.log(data)
-    
-  }
+  const [error, setError] = useState(false)
+
+  const handleLogin = async (data) => {
+    try {
+      const response = await axios.post('http://localhost:8000/user/login', data, {
+        withCredentials: true
+      })
+
+      if(response.status === 200){
+        console.log("User loggedIn successfully")
+        navigate('/')
+      }
+    } catch (error) {
+        console.log(error.message)
+    }
+}
 
   return (
     <div>
