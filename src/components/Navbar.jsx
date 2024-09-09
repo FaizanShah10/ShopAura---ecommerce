@@ -6,14 +6,17 @@ import axios from 'axios'
 
 import {Link, useNavigate} from 'react-router-dom'
 import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
+import { useLogoutUserMutation } from '../../../Backend/auth/authApi';
 
 
 
 const Navbar = () => {
+    
 
     const navigate = useNavigate()
-
     const dispatch = useDispatch()
+
+    const [logoutUser] = useLogoutUserMutation()
 
     // Access cart data from Redux
     const { cartItems, totalProducts, totalAmount, tax, grandTotal } = useSelector((state) => state.cart);
@@ -46,12 +49,13 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:8000/user/logout', {}, {withCredentials: true})
-            navigate('/login')
+          await logoutUser().unwrap(); // Call the logoutUser mutation
+          console.log("User logged out successfully");
+          navigate('/login'); // Redirect to login page after successful logout
         } catch (error) {
-            console.log(error.message)
+          console.log("Logout failed:", error.message || error);
         }
-    }
+      };
 
     return (
         <>
