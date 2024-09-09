@@ -210,10 +210,10 @@ const Navbar = () => {
 
             {
                 openAccount && (
-                    <div className={`fixed z-[100] mt-[80px] bg-black bg-opacity-80 inset-0 transition-opacity ${openAccount ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                    <div className={`fixed z-[100] lg:mt-[80px] mt-[70px] bg-black bg-opacity-80 inset-0 transition-opacity ${openAccount ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                     style={{transition: 'opacity 300ms'}}
                     >
-                        <div className={`fixed mt-[80px] right-32 top-0 bg-white rounded-md md:w-[13.5vw] w-full h-auto overflow-y-auto transition-transform ${openAccount ? 'translate-x-100' : 'translate-x-0'}`}
+                        <div className={`fixed lg:mt-[80px] mt-[70px] lg:right-32 md:right-12 sm:right-14 right-4 top-0 bg-white rounded-md lg:w-[13.5vw] md:w-[20vw] w-[45vw] h-auto overflow-y-auto transition-transform ${openAccount ? 'translate-x-100' : 'translate-x-0'}`}
                         style={{transition: 'transform 300ms cubic-bazier(0.25, 0.46, 0.45, 0.94)'}}
                         >
                                 <div className='pt-6 pl-3 pr-3 flex flex-col'>
