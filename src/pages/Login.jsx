@@ -1,18 +1,24 @@
 import React, { useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router';
+import {useDispatch } from 'react-redux'
 import { useLoginUserMutation } from '../../../Backend/auth/authApi';
+import { setUser } from '../redux/features/authSlice';
 
 const Login = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [loginUser] = useLoginUserMutation(); 
   const [errorMessage, setErrorMessage] = useState('');
 
   const handleLogin = async (data) => {
+    // console.log(data)
     try {
       const result = await loginUser(data).unwrap();
-      console.log("User logged in successfully", result);
+      console.log("user logged in", result)
+      const {user} = result // getting user from result data
+      dispatch(setUser({user})) ///setting user in local storage
       navigate('/');
     } catch (error) {
       setErrorMessage(error.message || 'An error occurred');
@@ -31,17 +37,16 @@ const Login = () => {
               </h1>
               <form onSubmit={handleSubmit(handleLogin)} className="space-y-4 md:space-y-6">
                 <div>
-                  <label htmlFor="emailOrPhone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
-                    Your email or phone number
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
+                    Your Email
                   </label>
                   <input
-                    type="text"
-                    id="emailOrPhone"
-                    name="emailOrPhone"
+                    type="email"
+                    name="email"
                     className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
                     placeholder="Enter your Email or phone Number"
                     required
-                    {...register('emailOrPhone')}
+                    {...register('email')}
                   />
                 </div>
 
@@ -51,7 +56,6 @@ const Login = () => {
                   </label>
                   <input
                     type="password"
-                    id="password"
                     name="password"
                     className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black"
                     placeholder="••••••••"

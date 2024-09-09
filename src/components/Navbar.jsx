@@ -7,6 +7,7 @@ import axios from 'axios'
 import {Link, useNavigate} from 'react-router-dom'
 import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
 import { useLogoutUserMutation } from '../../../Backend/auth/authApi';
+import { removeUser } from '../redux/features/authSlice';
 
 
 
@@ -49,9 +50,10 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         try {
-          await logoutUser().unwrap(); // Call the logoutUser mutation
+          await logoutUser().unwrap(); 
+          dispatch(removeUser())
           console.log("User logged out successfully");
-          navigate('/login'); // Redirect to login page after successful logout
+          navigate('/login'); 
         } catch (error) {
           console.log("Logout failed:", error.message || error);
         }

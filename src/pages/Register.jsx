@@ -3,8 +3,11 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 import {useNavigate} from 'react-router-dom'
 import { useRegisterUserMutation } from '../../../Backend/auth/authApi'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../redux/features/authSlice'
 
 const Register = () => {
+  const dispatch = useDispatch()
 
   const navigate = useNavigate()
 
@@ -16,11 +19,9 @@ const Register = () => {
     try {
       // Use unwrap() to get the payload directly
       const result = await registerUser(data).unwrap();
-      
-      // Assuming that a successful response means that user registration was successful
+      const {user} = result
+      dispatch(setUser({user}))
       console.log("User created successfully", result);
-      
-      // Navigate to the home route after successful registration
       navigate('/');
     } catch (error) {
       // Handle errors appropriately
@@ -41,27 +42,23 @@ const Register = () => {
                     </h1>
                     <form onSubmit={handleSubmit(handleRegister)} className="space-y-4 md:space-y-6" action="#">
                         <div>
-                            <label for="fullName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Full Name</label>
+                            <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Full Name</label>
                             <input type="text" name="fullName" className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:none dark:focus:none" placeholder="FullName" required="" {...register('fullName')}/>
                         </div>
 
-                        <div>
-                            <label for="phoneNo" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Phone No</label>
-                            <input type="tel" name="phoneNo" className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:none dark:focus:none" placeholder='Phone No' required="" {...register('phoneNo')}/>
-                        </div>
 
                         <div>
-                            <label for="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your email</label>
+                            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your email</label>
                             <input type="email" name="email"  className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:none dark:focus:none" placeholder="name@example.com" required="" {...register('email')}/>
                         </div>
 
                         <div>
-                            <label for="birthday" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your Birthday</label>
+                            <label htmlFor="birthday" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Your Birthday</label>
                             <input type="date" name="birthday"  className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:none dark:focus:none" required="" {...register('birthday')}/>
                         </div>
 
                         <div>
-                            <label for="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Password</label>
+                            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-black">Password</label>
                             <input type="password" name="password"  className="bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:none dark:focus:none" placeholder="••••••••"  required="" {...register('password')}/>
                         </div>
                         
