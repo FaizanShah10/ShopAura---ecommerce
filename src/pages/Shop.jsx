@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Products from "../../public/Products.json";
+// import Products from "../../public/Products.json";
 
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
@@ -27,11 +27,34 @@ const filters = {
 }
 
 const Shop = () => {
+
+  const [products, setProducts] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:8000/api/product/all-products')
+    .then((res) => res.json())
+    .then((data) =>setProducts(data))
+    .catch((error) => console.log(error.message))
+  }, [])
+
+  useEffect(() => {
+    fetchProducts()
+  },[])
+  
+  const fetchProducts = async () => {
+    
+    const result = await fetch('http://localhost:8000/api/product/all-products') 
+    setProducts(result);
+    
+  }
+
+ 
+  
   const navigate = useNavigate()
   
   const dispatch = useDispatch();
   // State for filtered products
-  const [filteredProducts, setFilteredProducts] = useState(Products);
+  const [filteredProducts, setFilteredProducts] = useState(products);
 
   // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
@@ -60,8 +83,8 @@ const Shop = () => {
   };
 
   // Apply filters to Products and update filteredProducts state
-  const applyFilters = () => {
-    let updatedProducts = Products;
+  const fetchFilteredProducts = () => {
+    let updatedProducts = products;
 
     // Filter by category
     if (filterState.category && filterState.category !== 'all') {
@@ -92,7 +115,7 @@ const Shop = () => {
 
   // Apply filters whenever filterState changes
   useEffect(() => {
-    applyFilters();
+    fetchFilteredProducts();
   }, [filterState]);
 
   // Calculate the items for the current page
@@ -268,9 +291,9 @@ const Shop = () => {
                 const emptyStars = 5 - filledStars;
 
                 return (
-                  <Link  key={product.id} className='relative hover:scale-105 transition-transform duration-300'>
+                  <Link  key={product._id} className='relative hover:scale-105 transition-transform duration-300'>
                     <img
-                      onClick={() => navigate(`/product/${product.id}`)}
+                      onClick={() => navigate(`/product/${product._id}`)}
                       className='w-full h-48 object-cover rounded-sm'
                       src={product.image}
                       alt={product.name}
@@ -306,15 +329,13 @@ const Shop = () => {
 
       {/* Pagination */}
       {filteredProducts.length > itemsPerPage && (
-        <Stack spacing={2} alignItems='center' marginTop={4} marginBottom={4}>
+        <Stack spacing={2} alignItems='center' className='py-8'>
           <Pagination
-            count={Math.ceil(filteredProducts.length / itemsPerPage)}
+            count={Math.ceil(filteredProducts.length / itemsPerPage)} 
             page={currentPage}
             onChange={handlePageChange}
-            color='secondary'
-            shape='rounded'
-            showFirstButton
-            showLastButton
+            color="primary"
+            size="large"
           />
         </Stack>
       )}

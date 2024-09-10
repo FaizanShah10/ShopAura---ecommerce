@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,11 +13,12 @@ import { removeUser } from '../redux/features/authSlice';
 
 const Navbar = () => {
     
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [logoutUser] = useLogoutUserMutation()
+    //showing logged-in user
+    const {user}  = useSelector(state => state.auth)
+
 
     // Access cart data from Redux
     const { cartItems, totalProducts, totalAmount, tax, grandTotal } = useSelector((state) => state.cart);
@@ -31,7 +32,6 @@ const Navbar = () => {
         setOpenAccount(!openAccount)
     }
 
-    
     const toggleCart = () => {
         setIsCartOpen(!isCartOpen);
     };
@@ -48,16 +48,37 @@ const Navbar = () => {
         dispatch(updateCartItems({id, quantity: newQuantity}))
     }
 
+    const [logoutUser] = useLogoutUserMutation()
+
+    
+
     const handleLogout = async () => {
         try {
           await logoutUser().unwrap(); 
           dispatch(removeUser())
-          console.log("User logged out successfully");
+        //   console.log("User logged out successfully");
           navigate('/login'); 
         } catch (error) {
           console.log("Logout failed:", error.message || error);
         }
       };
+
+
+      const userMenuOptions = [
+        {label: "Dashboard", path: 'dashboard'},
+        {label: "Profile", path: 'profile'},
+        {label: "Orders", path: 'orders'},
+        
+      ]
+
+      const adminMenuOptions = [
+        {label: "Dashboard", path: 'dashboard'},
+        {label: "Users", path: 'users'},
+        {label: "Manage Orders", path: 'manage-orders'},
+        {label: "Add new Item", path: 'add-new-item'},
+      ]
+
+      const dropDownMenuOption = user?.role ==='admin' ? [...adminMenuOptions] : [...userMenuOptions]
 
     return (
         <>
@@ -113,7 +134,9 @@ const Navbar = () => {
                                 <svg className="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                                 </svg>
-                                Account
+                                {
+                                    user ? <>{user.fullName}</> : <Link to={'/login'}>Login</Link>
+                                }
                             </button>
 
                             <button onClick={handleShowMenu} type="button" aria-controls="ecommerce-navbar-menu-1" aria-expanded={showMenu} className="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-[#9A0000] hover:text-white p-2 text-black dark:text-black">
@@ -219,25 +242,21 @@ const Navbar = () => {
                         style={{transition: 'transform 300ms cubic-bazier(0.25, 0.46, 0.45, 0.94)'}}
                         >
                                 <div className='pt-6 pl-3 pr-3 flex flex-col'>
-                                    <Link className='' to={'/dashboard'}>
-                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Dashbaord</button>
-                                    </Link>
-
-                                    <Link className='' to={'/profile'}>
-                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Profile</button>
-                                    </Link>
-
-                                    <Link className='' to={'/orders'}>
-                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Orders</button>
-                                    </Link>
-
-                                    <Link className='' to={'/register'}>
-                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >Create Account</button>
-                                    </Link>
-
-                                    <Link to={'/login'}>
-                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 text-left mb-6' >Login</button>
-                                    </Link>
+                                    
+                                    {
+                                        
+                                        <div className='flex flex-col'>
+                                            {
+                                                dropDownMenuOption.map((item, index) => (
+                                                    <Link key={index} className='' to={`/${item.path}`}>
+                                                        <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >{item.label}</button>
+                                                    </Link>
+                                                ))
+                                            }
+                                            
+                                        </div>
+                                    }
+                                   
                                     <hr className=' border-gray-400'/>
                                     
                                     <Link to={'/'}>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {useParams, Link} from 'react-router-dom'
 
 import { IoIosArrowForward } from "react-icons/io";
@@ -8,32 +8,57 @@ import Sandles from '../assets/Sandles.webp'
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/features/cartSlice';
 
+import { HiStar, HiOutlineStar } from "react-icons/hi2";
+
 const ProductPage = () => {
+
+  const [products, setProducts] = useState([])
+
+  const  {id} = useParams()
+
+  useEffect(() => {
+    fetch(`http://localhost:8000/api/product/${id}`)
+    .then(res => res.json())
+    .then(data => setProducts(data))
+    .catch((error) =>  console.log(error.message))
+  }, [])
+
+  
 
   const dispatch = useDispatch();
 
+  const filledStars = Math.floor(products.rating || 0); // Ensure rating is defined
+  const emptyStars = 5 - filledStars;
 
-  const  {id} = useParams()
-  console.log(id)
+
+  
   return (
     <div>
       <div className='flex gap-2  px-32 py-6'>
         <Link className='flex items-center underline text-red-700' to={'/'}>Home <span><IoIosArrowForward /></span></Link>
         <Link className='flex items-center underline text-red-700' to={'/shop'}>Shop <span><IoIosArrowForward /></span></Link>
-        <Link className='flex items-center text-red-700'>Product Name</Link>
+        <Link className='flex items-center text-red-700'>{products.name}</Link>
       </div>
 
 
       {/* Product */}
       <div className='flex md:flex-row sm:flex-col flex-col  lg:flex-row'>
         <div className='lg:w-[32vw] lg:h-[32vw]  sm:w-[60vw] sm:h-[50vw] lg:ml-32 ml-0 lg:p-0 p-10'>
-          <img className='rounded-md' src={Sandles} alt="" />
+          <img className='rounded-md' src={products.image} alt="" />
         </div>
 
         <div className='lg:ml-20 ml-0 p-4 lg:p-0'>
-          <h1 className='text-2xl font-bold  mt-8 font-[Gilroy-Medium]'>Product Name</h1>
-          <h2>reviews</h2>
-          <p className='mt-10 text-2xl font-[Gilroy-Medium]'>Price</p>
+          <h1 className='text-2xl font-bold  mt-8 font-[Gilroy-Medium]'>{products.name}</h1>
+          {/* Rating Display */}
+          <div className='flex mt-2'>
+            {Array.from({ length: filledStars }).map((_, index) => (
+              <HiStar key={index} className='text-yellow-500' />
+            ))}
+            {Array.from({ length: emptyStars }).map((_, index) => (
+              <HiOutlineStar key={index} className='text-yellow-500' />
+            ))}
+          </div>
+          <p className='mt-10 text-2xl font-[Gilroy-Medium]'>{products.id}</p>
           <p className='font-[Gilroy-Medium] mt-10 mb-2'>Sizes</p>
           {/* size buttons */}
           <div className='flex flex-wrap gap-2'>
@@ -47,7 +72,7 @@ const ProductPage = () => {
           {/* Description */}
           <h2 className='font-[Gilroy-Medium] text-xl mt-6'>Description</h2>
           <div className='lg:w-[30vw] w-full mt-2'>
-            <p className='text-gray-500'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum aspernatur unde eaque omnis quia voluptatum numquam pariatur voluptatibus facere.</p>
+            <p className='text-gray-500'>{products.description}</p>
           </div>
 
           {/* Cart Button */}

@@ -1,5 +1,4 @@
-import React from 'react'
-import Products from "../../../public/Products.json"
+import React, { useEffect, useState } from 'react'
 import {Link, useNavigate} from 'react-router-dom'
 
 
@@ -11,8 +10,18 @@ import { HiStar, HiOutlineStar } from "react-icons/hi2";
 
 const TrendingProducts = () => {
 
-  const navigate = useNavigate()
+  const [products, setProducts] = useState([])
 
+  useEffect(() => {
+    fetch('http://localhost:8000/api/product/all-products')
+    .then((res) => res.json())
+    .then((data) =>setProducts(data))
+    .catch((error) => console.log(error.message))
+  }, [])
+
+  // console.log(products)
+
+  const navigate = useNavigate()
   const dispatch = useDispatch();
 
   return (
@@ -23,14 +32,14 @@ const TrendingProducts = () => {
 
       {/* Products Card */}
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-16 px-10 lg:px-24 py-16'>
-        {Products.map((product) => {
+        {products.map((product) => {
           // Determine the number of filled and empty stars based on the product rating
           const filledStars = Math.floor(product.rating);
           const emptyStars = 5 - filledStars;
 
           return (
             <Link  key={product.id} className='w-38 h-38 relative hover:scale-105 transition-all duration-300'>
-              <img onClick={() => navigate(`/product/${product.id}`)} className='h-56 w-96 object-cover rounded-sm' src={product.image} alt={product.name} />
+              <img onClick={() => navigate(`/product/${product._id}`)} className='h-56 w-96 object-cover rounded-sm' src={product.image} alt={product.name} />
               <div className='absolute top-3 right-3'>
                 <button  className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
                     <i onClick={() => dispatch(addToCart(product))} className='text-white'><MdOutlineShoppingCart/></i>

@@ -21,7 +21,7 @@ const Register = () => {
       const result = await registerUser(data).unwrap();
       const {user} = result
       dispatch(setUser({user}))
-      console.log("User created successfully", result);
+      // console.log("User created successfully", result);
       navigate('/');
     } catch (error) {
       // Handle errors appropriately
