@@ -14,6 +14,11 @@ import ProductPage from "../pages/ProductPage";
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 
+import Dashboard from '../pages/Admin/Dashboard'
+import ManageOrders from '../pages/Admin/ManageOrders'
+import ManageUsers from '../pages/Admin/ManageUsers'
+import AddNewItem from '../pages/Admin/AddNewItem'
+
 
   const router = createBrowserRouter([
     {
@@ -40,6 +45,22 @@ import Register from '../pages/Register'
         {
           path: `/product/:id`,
           element: <ProductPage/>
+        },
+        {
+          path: '/admin/dashboard',
+          element: <Dashboard/>
+        },
+        {
+          path: '/admin/manage-orders',
+          element: <ManageOrders/>
+        },
+        {
+          path: '/users',
+          element: <ManageUsers/>
+        },
+        {
+          path: 'add-new-item',
+          element: <AddNewItem/>
         }
       ]
     },
@@ -50,7 +71,8 @@ import Register from '../pages/Register'
     {
       path: '/register',
       element: <Register/>
-    }
+    },
+    
   ]);
 
   export default router

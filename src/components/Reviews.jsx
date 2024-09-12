@@ -27,6 +27,10 @@ const Reviews = ({ reviews }) => {
     setIsModelOpen(true)
   }
 
+  const handleCloseModel = () => {
+    setIsModelOpen(false)
+  }
+
   const handleRating = (value) => {
     setRating(value)
   }
@@ -50,6 +54,8 @@ const Reviews = ({ reviews }) => {
     } catch (error) {
       alert("Something went wrong posting comment")
     }
+
+    handleCloseModel()
   }
 
   return (
@@ -93,7 +99,7 @@ const Reviews = ({ reviews }) => {
         <p>No reviews yet.</p>
       )}
       
-      <button onClick={handleOpenModel} className='flex gap-2 px-6 py-3 items-center bg-red-700 text-white font-[Gilroy-Medium] rounded-md'>
+      <button onClick={handleOpenModel} className='flex gap-2 px-3 py-1 m-10 items-center bg-red-700 text-white font-[Gilroy-Medium] rounded-md'>
         <FaPen />
         Add Review
       </button>
@@ -136,7 +142,10 @@ const Reviews = ({ reviews }) => {
                 ))
               }
             </div>
-            <button onClick={handlePostReview} className='px-4 py-1 bg-red-700 text-white font-[Gilroy-Medium] text-sm rounded-md mt-2'>Post</button>
+            <div>
+              <button onClick={handlePostReview} className='px-4 py-1 mr-2 bg-red-700 text-white font-[Gilroy-Medium] text-sm rounded-md mt-2'>Post</button>
+              <button onClick={handleCloseModel} className='px-4 py-1 bg-gray-700 text-white font-[Gilroy-Medium] text-sm rounded-md mt-2'>Cancel</button>  
+            </div>
           </div>
         </div>
       

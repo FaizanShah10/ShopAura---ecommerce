@@ -72,9 +72,9 @@ const Navbar = () => {
       ]
 
       const adminMenuOptions = [
-        {label: "Dashboard", path: 'dashboard'},
+        {label: "Dashboard", path: 'admin/dashboard'},
         {label: "Users", path: 'users'},
-        {label: "Manage Orders", path: 'manage-orders'},
+        {label: "Manage Orders", path: 'admin/manage-orders'},
         {label: "Add new Item", path: 'add-new-item'},
       ]
 
