@@ -14,7 +14,7 @@ import { addToCart } from '../redux/features/cartSlice';
 const filters = {
   
   categories: ['all', 'accessories', 'dress', 'cosmetics', 'jewellery'],
-  colors: ['all', 'red', 'gold', 'pink', 'black', 'blue'],
+  colors: ['all', 'red', 'gold', 'pink', 'black', 'blue', 'Silver'],
   priceRange: [
     { label: "All", min: 0, max: Infinity },
     { label: "Under $50", min: 0, max: 50 },
@@ -37,16 +37,6 @@ const Shop = () => {
     .catch((error) => console.log(error.message))
   }, [])
 
-  useEffect(() => {
-    fetchProducts()
-  },[])
-  
-  const fetchProducts = async () => {
-    
-    const result = await fetch('http://localhost:8000/api/product/all-products') 
-    setProducts(result);
-    
-  }
 
  
   

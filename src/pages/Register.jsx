@@ -2,7 +2,7 @@ import React from 'react'
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import {useNavigate} from 'react-router-dom'
-import { useRegisterUserMutation } from '../../../Backend/auth/authApi'
+import { useRegisterUserMutation } from '../../../Backend/auth/cartApi'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../redux/features/authSlice'
 
@@ -17,15 +17,28 @@ const Register = () => {
 
   const handleRegister = async (data) => {
     try {
-      // Use unwrap() to get the payload directly
+      // Perform the user registration via your API
       const result = await registerUser(data).unwrap();
-      const {user} = result
-      dispatch(setUser({user}))
-      // console.log("User created successfully", result);
+
+      // Assuming the result contains 'user' with 'userId'
+      const { userId, fullName, email, birthday, role } = result.user;
+
+      // Dispatch the setUser action to store user data in Redux
+      dispatch(setUser({
+        user: {
+          userId,
+          fullName,
+          email,
+          birthday,
+          role
+        }
+      }));
+
+      // Navigate to home page or another appropriate route
       navigate('/');
     } catch (error) {
       // Handle errors appropriately
-      console.log("Registration failed:", error.message || error);
+      console.log('Registration failed:', error.message || error);
     }
   };
   

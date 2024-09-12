@@ -6,7 +6,7 @@ import axios from 'axios'
 
 import {Link, useNavigate} from 'react-router-dom'
 import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
-import { useLogoutUserMutation } from '../../../Backend/auth/authApi';
+import { useLogoutUserMutation } from '../../../Backend/auth/cartApi';
 import { removeUser } from '../redux/features/authSlice';
 
 
