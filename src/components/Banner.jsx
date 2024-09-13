@@ -6,6 +6,8 @@ import 'swiper/css';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 import bagImage1 from "../assets/Bag-1.png"
+import BannerImg1 from '../assets/BannerImg1.webp'
+import BannerImg2 from '../assets/BannerImg2.jpg'
 
 const Banner = () => {
     // const progressCircle = useRef(null);
@@ -31,79 +33,32 @@ const Banner = () => {
   loop={true}
     >
             <SwiperSlide>
-                    <div className='w-screen lg:h-[35vw] md:h-[60vw] h-[50vh] lg:overflow-hidden bg-[#57B5B6] relative '>
-                    <div className='lg:pl-32 p-2'>
-                        <div className='w-full py-2 bg-white rounded-full px-4 block lg:hidden'>Search</div>
+            <div className="w-screen min-h-screen bg-[#57B5B6] relative">
+                <img className="w-full h-full object-cover" src={BannerImg1} alt="" />
 
-                        <div className='lg:block flex justify-center'>
-                        <h2 className='lg:text-6xl md:text-4xl text-3xl text-center md:text-center font-semibold lg:top-[45%] md:top-[16%] top-[20%] absolute text-white font-[Gilroy-Bold]'>
-                            Elevate Your Lifestyle
-                        </h2>
-                        <h3 className='lg:text-lg lg:text-left md:text-lg text-sm font-semibold absolute text-center md:text-center text-black lg:top-[56%] md:top-[24%] top-[29%] font-[Gilroy-Medium]'>
-                            Find the Perfect Blend of Style, Quality, <br/> and Affordability!
-                        </h3>
-                        </div>
-                        
-                    </div>
-                    {/* Hidden on Mobile */}
-                    <div className='lg:block md:flex md:justify-center'>
-                        <div className='lg:w-[25%] lg:h-full md:w-[30%] md:h-[40vh] w-[40%] h-[55%] lg:top-2 top-40  left-28 lg:absolute lg:left-[65vw] md:left-[35vw] absolute lg:block md:block'>
-                            <img className='w-full h-[100%] lg:top-10 ' src={bagImage1} alt="" />
-                        </div>
-                    </div>
+                {/* Text content that will be centered */}
+                <div className="absolute inset-0 flex flex-col gap-3 justify-center items-center">
+                    <h1 className="text-white text-5xl font-[Gilroy-Bold]">Elevate your Life Style</h1>
+                    <a href='/shop' className='px-10 py-3 bg-transparent border-white border-[1px] rounded-sm text-white font-[Gilroy-Medium] hover:bg-white hover:text-black transition-all duration-300'>Shop</a>
+                </div>
+            </div>
 
-                    </div>
             </SwiperSlide>
 
             <SwiperSlide>
-                    <div className='w-screen lg:h-[35vw] md:h-[60vw] h-[50vh] lg:overflow-hidden bg-[#57B5B6] relative '>
-                    <div className='lg:pl-32 p-2'>
-                        <div className='w-full py-2 bg-white rounded-full px-4 block lg:hidden'>Search</div>
+            <div className="w-screen h-screen bg-[#57B5B6] relative">
+                <img className="w-full h-full object-cover" src={BannerImg2} alt="" />
 
-                        <div className='lg:block flex justify-center'>
-                        <h2 className='lg:text-6xl md:text-4xl text-3xl text-center md:text-center font-semibold lg:top-[45%] md:top-[16%] top-[20%] absolute text-white font-[Gilroy-Bold]'>
-                            Elevate Your Lifestyle
-                        </h2>
-                        <h3 className='lg:text-lg lg:text-left md:text-lg text-sm font-semibold absolute text-center md:text-center text-black lg:top-[56%] md:top-[24%] top-[29%] font-[Gilroy-Medium]'>
-                            Find the Perfect Blend of Style, Quality, <br/> and Affordability!
-                        </h3>
-                        </div>
-                        
-                    </div>
-                    {/* Hidden on Mobile */}
-                    <div className='lg:block md:flex md:justify-center'>
-                        <div className='lg:w-[25%] lg:h-full md:w-[30%] md:h-[40vh] w-[40%] h-[55%] lg:top-2 top-40  left-28 lg:absolute lg:left-[65vw] md:left-[35vw] absolute lg:block md:block'>
-                            <img className='w-full h-[100%] lg:top-10 ' src={bagImage1} alt="" />
-                        </div>
-                    </div>
+                {/* Text content that will be centered */}
+                <div className="absolute inset-0 flex flex-col gap-3 justify-center items-center">
+                    <h1 className="text-white text-5xl font-[Gilroy-Bold]">Shop the trending products</h1>
+                    <a href='#trendingProducts' className='px-10 py-3 bg-transparent border-white border-[1px] rounded-sm text-white font-[Gilroy-Medium] hover:bg-white hover:text-black transition-all duration-300'>trending Products</a>
+                </div>
+            </div>
 
-                    </div>
             </SwiperSlide>
 
-            <SwiperSlide>
-                    <div className='w-screen lg:h-[35vw] md:h-[60vw] h-[50vh] lg:overflow-hidden bg-[#57B5B6] relative '>
-                    <div className='lg:pl-32 p-2'>
-                        <div className='w-full py-2 bg-white rounded-full px-4 block lg:hidden'>Search</div>
-
-                        <div className='lg:block flex justify-center'>
-                        <h2 className='lg:text-6xl md:text-4xl text-3xl text-center md:text-center font-semibold lg:top-[45%] md:top-[16%] top-[20%] absolute text-white font-[Gilroy-Bold]'>
-                            Elevate Your Lifestyle
-                        </h2>
-                        <h3 className='lg:text-lg lg:text-left md:text-lg text-sm font-semibold absolute text-center md:text-center text-black lg:top-[56%] md:top-[24%] top-[29%] font-[Gilroy-Medium]'>
-                            Find the Perfect Blend of Style, Quality, <br/> and Affordability!
-                        </h3>
-                        </div>
-                        
-                    </div>
-                    {/* Hidden on Mobile */}
-                    <div className='lg:block md:flex md:justify-center'>
-                        <div className='lg:w-[25%] lg:h-full md:w-[30%] md:h-[40vh] w-[40%] h-[55%] lg:top-2 top-40  left-28 lg:absolute lg:left-[65vw] md:left-[35vw] absolute lg:block md:block'>
-                            <img className='w-full h-[100%] lg:top-10 ' src={bagImage1} alt="" />
-                        </div>
-                    </div>
-
-                    </div>
-            </SwiperSlide>
+            
 
             {/* <div>
                 <span ref={progressContent}></span>

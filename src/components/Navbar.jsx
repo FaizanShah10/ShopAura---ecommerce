@@ -82,34 +82,34 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="bg-[#E9DCD3] shadow-md antialiased z-10 w-full">
+            <nav className="bg-zinc-900 shadow-md antialiased z-10 w-full">
                 <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-8">
                             <div className="shrink-0">
                                 <a href="/" title="" className="">
-                                    <h2 className="text-black font-semibold text-2xl">SHOP AURA</h2>
+                                    <h2 className="text-white font-semibold text-2xl">SHOP AURA</h2>
                                 </a>
                             </div>
 
                             <ul className="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
                                 <li>
-                                    <a href="/" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
+                                    <a href="/" title="" className="flex text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
                                         Home
                                     </a>
                                 </li>
                                 <li className="shrink-0">
-                                    <a href="/shop" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
+                                    <a href="/shop" title="" className="flex text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
                                         Shop
                                     </a>
                                 </li>
                                 <li className="shrink-0">
-                                    <a href="#" title="" className="flex text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
+                                    <a href="#" title="" className="flex text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
                                         Categories
                                     </a>
                                 </li>
                                 <li className="shrink-0">
-                                    <a href="#" title="" className="text-sm font-medium text-black hover:text-primary-700 dark:text-black dark:hover:text-[#9A0000]">
+                                    <a href="#" title="" className="text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
                                         Contact
                                     </a>
                                 </li>
@@ -118,19 +118,19 @@ const Navbar = () => {
 
                         <div className="flex items-center lg:space-x-2">
                             <button className='p-2'>
-                                <a href="/search"><IoSearch className='w-4 h-4'/></a>
+                                <a className='text-white' href="/search"><IoSearch className='w-4 h-4'/></a>
                             </button>
 
-                            <button onClick={toggleCart} id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 hover:text-white dark:hover:bg-[#9A0000] text-sm font-medium leading-none text-black dark:text-black">
+                            <button onClick={toggleCart} id="myCartDropdownButton1" data-dropdown-toggle="myCartDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 hover:text-black dark:hover:bg-white text-sm font-medium leading-none text-black dark:text-white">
                                 <span className="sr-only">Cart</span>
                                 <svg className="w-5 h-5 lg:me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312"/>
                                 </svg>
-                                <sup className='w-3 h-3 flex items-center justify-center bg-red-700 text-white rounded-full font-[Gilroy-Medium]'>{totalProducts}</sup>
+                                <sup className='w-3 h-3 flex items-center justify-center bg-white text-black rounded-full font-[Gilroy-Medium]'>{totalProducts}</sup>
                                 {/* <span className="hidden sm:flex">My Cart</span> */}
                             </button>
 
-                            <button onClick={handleShowAccount} id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-[#9A0000] hover:text-white text-sm font-medium leading-none text-black dark:text-black">
+                            <button onClick={handleShowAccount} id="userDropdownButton1" data-dropdown-toggle="userDropdown1" type="button" className="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-white hover:text-black text-sm font-medium leading-none text-white dark:text-white">
                                 <svg className="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-width="2" d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
                                 </svg>
