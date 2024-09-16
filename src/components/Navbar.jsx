@@ -104,7 +104,7 @@ const Navbar = () => {
                                     </a>
                                 </li>
                                 <li className="shrink-0">
-                                    <a href="#" title="" className="flex text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
+                                    <a href="/category" title="" className="flex text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
                                         Categories
                                     </a>
                                 </li>
@@ -158,7 +158,7 @@ const Navbar = () => {
                                 <a href="/shop" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Shop</a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Categories</a>
+                                <a href="/category" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Categories</a>
                             </li>
                             <li>
                                 <a href="/contact" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Contact</a>

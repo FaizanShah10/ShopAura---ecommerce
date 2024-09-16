@@ -20,6 +20,7 @@ import ManageOrders from '../pages/Admin/ManageOrders'
 import ManageUsers from '../pages/Admin/ManageUsers'
 import AddNewItem from '../pages/Admin/AddNewItem'
 import CheckoutPage from "../pages/CheckoutPage";
+import Category from "../pages/Category";
 
 
   const router = createBrowserRouter([
@@ -35,6 +36,10 @@ import CheckoutPage from "../pages/CheckoutPage";
         {
           path: '/contact',
           element: <Contact/>
+        },
+        {
+          path: '/category',
+          element: <Category/>
         },
         {
           path: "/shop",
