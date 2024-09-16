@@ -139,7 +139,7 @@ const Navbar = () => {
                                 }
                             </button>
 
-                            <button onClick={handleShowMenu} type="button" aria-controls="ecommerce-navbar-menu-1" aria-expanded={showMenu} className="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-[#9A0000] hover:text-white p-2 text-black dark:text-black">
+                            <button onClick={handleShowMenu} type="button" aria-controls="ecommerce-navbar-menu-1" aria-expanded={showMenu} className="inline-flex lg:hidden items-center justify-center hover:bg-gray-100 rounded-md dark:hover:bg-white hover:text-black p-2 dark:text-white">
                                 <span className="sr-only">Open Menu</span>
                                 <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 7h14M5 12h14M5 17h14"/>
@@ -150,7 +150,7 @@ const Navbar = () => {
 
                     {/* Conditionally apply the "hidden" class based on the state */}
                     <div id="ecommerce-navbar-menu-1" className={`${showMenu ? '' : 'hidden'} bg-gray-50 dark:bg-white dark:border-white border border-gray-200 rounded-lg py-3 px-4 mt-4`}>
-                        <ul className="text-black dark:text-black text-sm font-medium space-y-3">
+                        <ul className="text-white dark:text-white text-sm font-medium space-y-3">
                             <li>
                                 <a href="/" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Home</a>
                             </li>
