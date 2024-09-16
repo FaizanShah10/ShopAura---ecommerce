@@ -217,14 +217,22 @@ const Navbar = () => {
                                     <p className='font-[Gilroy-Medium]'>Total Price: ${totalAmount.toFixed(2)}</p>
                                     <p className='font-[Gilroy-Medium]'>Tax: ${tax.toFixed(2)}</p>
                                     <p className='font-[Gilroy-Medium]'>Grand Total: {grandTotal.toFixed(2)}</p>
-                                    <button className='mt-3 w-full py-2 rounded-md bg-green-700 hover:bg-green-800 text-white font-[Gilroy-Medium] text-center'>Proceed to Checkout</button>
+                                    <Link 
+                                    to={'/CheckOutPage'}
+                                    onClick={() => setIsCartOpen(false)}
+                                    >
+                                        <button className='mt-3 w-full py-2 rounded-md bg-green-700 hover:bg-green-800 text-white font-[Gilroy-Medium] text-center'>Proceed to Checkout</button>
+                                        
+                                    </Link>
                                     </div>
                                 </div>
                                 </>
 
                                 
                             )
+                        
                         }
+                        
                     </div>
 
                     
@@ -248,11 +256,17 @@ const Navbar = () => {
                                         <div className='flex flex-col'>
                                             {
                                                 dropDownMenuOption.map((item, index) => (
-                                                    <Link key={index} className='' to={`/${item.path}`}>
+                                                    <Link 
+                                                    key={index} 
+                                                    className='' 
+                                                    to={`/${item.path}`}
+                                                    onClick={() => setOpenAccount(false)}
+                                                    >
                                                         <button className='font-[Gilroy-Medium] hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3 mb-2 text-left' >{item.label}</button>
                                                     </Link>
                                                 ))
                                             }
+                                            
                                             
                                         </div>
                                     }
@@ -263,6 +277,7 @@ const Navbar = () => {
                                         <button onClick={handleLogout} className='font-[Gilroy-Medium] relative pt-3 mb-2 flex gap-2 items-center hover:bg-red-700 hover:text-white hover:rounded-md py-2 px-3'><span><TbLogout2 /></span>Logout</button>
                                     </Link>
                                 </div>
+                                
                         </div>
                     </div>
                 )

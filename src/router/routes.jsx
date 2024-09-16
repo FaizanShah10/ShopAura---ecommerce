@@ -18,6 +18,7 @@ import Dashboard from '../pages/Admin/Dashboard'
 import ManageOrders from '../pages/Admin/ManageOrders'
 import ManageUsers from '../pages/Admin/ManageUsers'
 import AddNewItem from '../pages/Admin/AddNewItem'
+import CheckoutPage from "../pages/CheckoutPage";
 
 
   const router = createBrowserRouter([
@@ -61,6 +62,10 @@ import AddNewItem from '../pages/Admin/AddNewItem'
         {
           path: 'add-new-item',
           element: <AddNewItem/>
+        },
+        {
+          path: '/CheckOutPage',
+          element: <CheckoutPage/>
         }
       ]
     },

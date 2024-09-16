@@ -58,9 +58,13 @@ const CategoryPage = () => {
 
                 {/* Rating Display */}
                 <div className='flex justify-center mt-2'>
-                  {Array(filledStars).fill(<HiStar className='text-yellow-500' />)}
-                  {Array(emptyStars).fill(<HiOutlineStar className='text-yellow-500' />)}
-                </div>
+          {Array.from({ length: filledStars }, (_, i) => (
+            <HiStar key={i} className='text-yellow-500' />
+          ))}
+          {Array.from({ length: emptyStars }, (_, i) => (
+            <HiOutlineStar key={i} className='text-yellow-500' />
+          ))}
+        </div>
               </div>
             </Link>
           )

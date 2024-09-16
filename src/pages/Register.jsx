@@ -21,9 +21,9 @@ const Register = () => {
       const result = await registerUser(data).unwrap();
 
       // Assuming the result contains 'user' with 'userId'
-      const { userId, fullName, email, birthday, role } = result.user;
+      const { _id: userId, fullName, email, birthday, role } = result.user;
 
-      // Dispatch the setUser action to store user data in Redux
+      
       dispatch(setUser({
         user: {
           userId,

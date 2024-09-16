@@ -75,9 +75,20 @@ export const cartSlice = createSlice({
                 state.tax = state.totalAmount * 0.05
                 state.grandTotal = state.totalAmount + state.tax
             }
+        },
+        clearCart: (state, action) => {
+            state.cartItems = [];
+
+            state.totalProducts = 0;
+            state.totalAmount = 0;
+            state.tax = 0;
+            state.grandTotal = 0;
+
+            saveCartToLocalStorage(state)
+
         }
     }
 })
 
-export const {addToCart, removeFromCart, updateCartItems} = cartSlice.actions //export action
+export const {addToCart, removeFromCart, updateCartItems, clearCart} = cartSlice.actions //export action
 export default cartSlice.reducer //export reducer
