@@ -10,6 +10,7 @@ import Shop from "../pages/Shop"
 import CategoryPage from "../pages/Category/CategoryPage"
 import Search from "../pages/Search";
 import ProductPage from "../pages/ProductPage";
+import Contact from '../pages/Contact'
 
 import Login from '../pages/Login'
 import Register from '../pages/Register'
@@ -30,6 +31,10 @@ import CheckoutPage from "../pages/CheckoutPage";
         {
           path: "/",
           element: <Home/>,
+        },
+        {
+          path: '/contact',
+          element: <Contact/>
         },
         {
           path: "/shop",

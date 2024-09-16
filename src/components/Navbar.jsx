@@ -109,7 +109,7 @@ const Navbar = () => {
                                     </a>
                                 </li>
                                 <li className="shrink-0">
-                                    <a href="#" title="" className="text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
+                                    <a href="/contact" title="" className="text-sm font-medium text-white hover:text-primary-700 dark:text-white dark:hover:text-[#9A0000]">
                                         Contact
                                     </a>
                                 </li>
@@ -161,7 +161,7 @@ const Navbar = () => {
                                 <a href="#" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Categories</a>
                             </li>
                             <li>
-                                <a href="#" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Contact</a>
+                                <a href="/contact" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Contact</a>
                             </li>
                         </ul>
                     </div>
