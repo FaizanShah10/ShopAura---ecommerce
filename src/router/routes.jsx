@@ -20,6 +20,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import CheckoutPage from "../pages/CheckoutPage";
 import Category from "../pages/Category";
 import Products from "../pages/Admin/Products";
+import EditProduct from "../pages/Admin/EditProduct";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,13 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
+    path: "/edit-product/:productId",
+    element: <EditProduct />,
+  },
+
+
+  //Admin Dashboard Routes
+  {
     path: "/admin",
     element: <DashboardLayout />, // Using DashboardLayout as the wrapper for admin routes
     children: [
@@ -88,6 +96,10 @@ const router = createBrowserRouter([
         path: "products",
         element: <Products />,
       },
+      {
+        path: "add-new-product",
+        element: <AddNewItem />,
+      }
     ],
   },
 ]);

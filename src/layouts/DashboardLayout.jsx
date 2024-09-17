@@ -6,6 +6,7 @@ import { HiOutlineClipboardList } from "react-icons/hi";
 import { IoShirtOutline } from "react-icons/io5";
 import { HiOutlineHome } from "react-icons/hi2";
 import { RiLogoutCircleLine } from "react-icons/ri";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 const DashboardLayout = () => {
   const location = useLocation(); // Get current location
@@ -15,6 +16,8 @@ const DashboardLayout = () => {
     { label: 'Users', icon: <HiOutlineUsers />, to: '/admin/users' },
     { label: 'Orders', icon: <HiOutlineClipboardList />, to: '/admin/orders' },
     { label: 'Products', icon: <IoShirtOutline />, to: '/admin/products' },
+    { label: 'Add New Product', icon: <IoIosAddCircleOutline  />, to: '/admin/add-new-product' },
+
   ];
 
   const usefulLinks = [
