@@ -40,6 +40,7 @@ const CheckoutPage = () => {
     };
 
     const handleSubmit = async () => {
+        
         if (!address.street || !address.city || !address.state || !address.postalCode || !address.country) {
             failMessage(); // Notify user that address is incomplete
             
@@ -62,6 +63,7 @@ const CheckoutPage = () => {
                     address,
                     payment,
                     cartItems,
+                    totalAmount: grandTotal 
                 }),
             });
             

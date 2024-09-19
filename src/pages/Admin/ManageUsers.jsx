@@ -1,35 +1,40 @@
-// src/pages/Admin/ManageUsers.js
-import React from 'react';
+import React, { useEffect } from 'react';
+import {useDispatch} from 'react-redux'
+import { useGetUsersQuery } from '../../../../Backend/auth/cartApi';
+
 
 const ManageUsers = () => {
-  // Sample user data for demonstration purposes
-  const users = [
-    { id: 1, name: "John Doe", email: "john@example.com" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com" },
-    { id: 3, name: "Mike Johnson", email: "mike@example.com" },
-  ];
+  const dispatch = useDispatch()
+
+  const {data: users = [], error, isLoading} = useGetUsersQuery()
+   console.log(users)
+
+
+  
 
   return (
-    <div className="p-5">
-      <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
-      <table className="w-full table-auto border-collapse border border-gray-300">
-        <thead>
-          <tr>
-            <th className="border border-gray-300 px-4 py-2">ID</th>
-            <th className="border border-gray-300 px-4 py-2">Name</th>
-            <th className="border border-gray-300 px-4 py-2">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td className="border border-gray-300 px-4 py-2">{user.id}</td>
-              <td className="border border-gray-300 px-4 py-2">{user.name}</td>
-              <td className="border border-gray-300 px-4 py-2">{user.email}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div>
+      <div>
+        <h1 className='font-bold text-3xl text-center mt-10 mb-6'>
+          Manage <span className='text-secondary'>Products</span>
+        </h1>
+        <div className='lg:w-full md:w-3/4'>
+          <div className='bg-white rounded-lg shadow-md p-6 mb-4'>
+            <table className='w-full'>
+              <thead>
+                <tr>
+                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Product info</th>
+                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 text-sm'>Old Price</th>
+                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Current Price</th>
+                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Category</th>
+                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Actions</th>
+                </tr>
+              </thead>
+              
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
