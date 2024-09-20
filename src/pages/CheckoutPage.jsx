@@ -5,15 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import {  toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { clearCart } from '../redux/features/cartSlice';
+import { usePlaceOrderMutation } from '../../../Backend/auth/orderApi';
+
 
 const CheckoutPage = () => {
-    const dispactch = useDispatch()
+    const dispatch = useDispatch()
     const { user } = useSelector(state => state.auth);
 
     const successMessage = () => toast.success("Order Placed Successfully!!")
     const failMessage = () => toast.error("Error Placing Order!!")
     
     const { cartItems, totalProducts, totalAmount, tax, grandTotal } = useSelector((state) => state.cart);
+
+    const [placeOrder] = usePlaceOrderMutation()
 
     const [address, setAddress] = useState({
         street: '',
@@ -40,38 +44,35 @@ const CheckoutPage = () => {
     };
 
     const handleSubmit = async () => {
-        
+        // Check if address fields are complete
         if (!address.street || !address.city || !address.state || !address.postalCode || !address.country) {
             failMessage(); // Notify user that address is incomplete
-            
             return; // Stop the function if address is incomplete
         }
     
+        // Check if payment details are complete
         if (!payment.cardNumber || !payment.cardHolderName || !payment.expirationDate || !payment.cvv || !payment.billingAddress) {
             failMessage(); // Notify user that payment details are incomplete
-            
             return; // Stop the function if payment details are incomplete
         }
+    
         try {
-            const response = await fetch('http://localhost:8000/api/order/place-order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userId: user?.userId,
-                    address,
-                    payment,
-                    cartItems,
-                    totalAmount: grandTotal 
-                }),
+            const response = await placeOrder({
+                userId: user?.userId,
+                userName: user?.fullName,
+                address,
+                payment,
+                cartItems,
+                totalAmount: grandTotal 
             });
-            
-            if (response.ok) {
+    
+            // Check if the mutation was successful
+            if (response?.data) {
                 successMessage();
-                dispactch(clearCart())
-
-                  setAddress({
+                dispatch(clearCart()); // Clear cart after successful order
+    
+                // Reset address and payment states
+                setAddress({
                     street: '',
                     city: '',
                     state: '',
@@ -85,17 +86,17 @@ const CheckoutPage = () => {
                     cvv: '',
                     billingAddress: '',
                 });
-
-
             } else {
-                failMessage()
+                failMessage(); // Handle error response
             }
         } catch (error) {
-            toast.error("Error Placing Order !", {
+            toast.error("Error Placing Order!", {
                 position: toast.POSITION.TOP_CENTER,
-              });
+            });
         }
     };
+    
+    
 
     return (
         <>
