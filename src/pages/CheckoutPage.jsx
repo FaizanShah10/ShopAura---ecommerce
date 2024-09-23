@@ -35,6 +35,8 @@ const CheckoutPage = () => {
         billingAddress: '',
     });
 
+   
+
     const handleAddressChange = (e) => {
         setAddress({ ...address, [e.target.name]: e.target.value });
     };
