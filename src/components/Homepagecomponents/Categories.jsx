@@ -15,7 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Categories = () => {
   const categoriesRef = useRef([]);
-  const headingRef = useRef(null)
+  const headingRef = useRef(null);
 
   const categoriesData = [
     {
@@ -51,56 +51,54 @@ const Categories = () => {
   ];
 
   useEffect(() => {
-    // Set up the animation with ScrollTrigger
+    // Set up the heading animation with ScrollTrigger
     gsap.fromTo(
       headingRef.current,
       { y: 100, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        stagger: 0.2,
         duration: 0.8,
         ease: 'power2.out',
         scrollTrigger: {
-          trigger: headingRef.current, // Trigger the animation when the category section enters the viewport
-          start: 'top 70%', // Animation starts when top of the section reaches 80% of the viewport height
-          end: 'bottom 50%', // End of animation trigger
-          toggleActions: 'play none none none', // Only play once
+          trigger: headingRef.current,
+          start: 'top 70%',
+          toggleActions: 'play none none none',
         }
       }
     );
   }, []);
 
   useEffect(() => {
-    // Set up the animation with ScrollTrigger
-    gsap.fromTo(
-      categoriesRef.current,
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.2,
-        duration: 0.8,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: categoriesRef.current, // Trigger the animation when the category section enters the viewport
-          start: 'top 80%', // Animation starts when top of the section reaches 80% of the viewport height
-          end: 'bottom 60%', // End of animation trigger
-          toggleActions: 'play none none none', // Only play once
+    // Animate each category sequentially with ScrollTrigger
+    categoriesRef.current.forEach((el, index) => {
+      gsap.fromTo(
+        el,
+        { y: 100, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 80%',
+            toggleActions: 'play none none none',
+          }
         }
-      }
-    );
-  }, []);
+      );
+    });
+  }, [categoriesData]);
 
   return (
     <div className='max-w-[60vw] mx-auto'>
       <h2 
       ref={headingRef}
-      className='text-center p-16 text-3xl font-semibold font-[Gilroy-Medium]'>Categories</h2>
+      className='text-center p-16 text-3xl font-semibold font-[Gilroy-Medium]'>
+        Categories
+      </h2>
 
-      <div className='grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 place-items-center lg:gap-0 gap-20 font-[Gilroy-Medium]'
-        ref={categoriesRef} // Reference for the entire section to trigger the animation
-      >
+      <div className='grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 place-items-center lg:gap-0 gap-20 font-[Gilroy-Medium]'>
         {categoriesData.map((category, index) => (
           <Link
             to={`categories/${category.path}`}
