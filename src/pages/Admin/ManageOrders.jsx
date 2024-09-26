@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFetchAllOrdersQuery } from '../../../../Backend/auth/orderApi';
 
+
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 const ManageOrders = () => {
+
+  const rowsRef = useRef([])
+
+  useEffect(() => {
+    
+    gsap.fromTo(
+      rowsRef.current,
+      { opacity: 0, y: -50 }, // Start state for each row
+      {
+        opacity: 1,
+        y: 0, // End state
+        duration: 0.6,
+        stagger: 0.2, // Stagger each row by 0.2 seconds
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: rowsRef.current[0], // Only trigger when the first row comes into view
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  }, []);
+
   const { data: orders = [], error, isLoading } = useFetchAllOrdersQuery();
 
   if (isLoading) {
@@ -44,7 +71,10 @@ const ManageOrders = () => {
               <tbody>
                 {orders.length > 0 ? (
                   orders.map((order, index) => (
-                    <tr key={index} className="border-t">
+                    <tr 
+                    key={index} 
+                    ref={(el) => (rowsRef.current[index] = el)}
+                    className="border-t">
                       <td className='px-4 py-2'>
                         <h2 className='font-[Gilroy-Bold] text-sm'>{order._id}</h2>
                       </td>

@@ -1,9 +1,33 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {useDispatch} from 'react-redux'
 import { useDeleteProductMutation, useGetAllProductsQuery } from '../../../../Backend/auth/productApi';
 
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Products = () => {
+  const rowsRef = useRef([])
+
+  useEffect(() => {
+    
+    gsap.fromTo(
+      rowsRef.current,
+      { opacity: 0, y: -50 }, // Start state for each row
+      {
+        opacity: 1,
+        y: 0, // End state
+        duration: 0.6,
+        stagger: 0.2, // Stagger each row by 0.2 seconds
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: rowsRef.current[0], // Only trigger when the first row comes into view
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  }, []);
+
   const dispatch = useDispatch()
 
   const {data: products = [], error, isLoading} = useGetAllProductsQuery()
@@ -42,7 +66,9 @@ const Products = () => {
               </thead>
               {
                 products.map((items, index) => (
-                  <tbody key={index}>
+                  <tbody
+                  ref={(el) => (rowsRef.current[index] = el)}
+                  key={index}>
                 {/* Sample data - Replace with dynamic content */}
                 <tr className="border-t">
                   <td className='px-4 py-2 flex items-center gap-2'>

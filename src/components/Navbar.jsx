@@ -73,9 +73,7 @@ const Navbar = () => {
 
       const adminMenuOptions = [
         {label: "Dashboard", path: 'admin/dashboard'},
-        {label: "Users", path: 'users'},
-        {label: "Manage Orders", path: 'admin/manage-orders'},
-        {label: "Add new Item", path: 'add-new-item'},
+        
       ]
 
       const dropDownMenuOption = user?.role ==='admin' ? [...adminMenuOptions] : [...userMenuOptions]
