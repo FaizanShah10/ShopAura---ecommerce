@@ -64,7 +64,7 @@ const CheckoutPage = () => {
                 userName: user?.fullName,
                 address,
                 payment,
-                cartItems,
+                productInfo: cartItems,
                 totalAmount: grandTotal 
             });
     
