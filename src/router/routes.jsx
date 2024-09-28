@@ -21,6 +21,7 @@ import CheckoutPage from "../pages/CheckoutPage";
 import Category from "../pages/Category";
 import Products from "../pages/AdminDashboard/Products";
 import EditProduct from "../pages/AdminDashboard/EditProduct";
+import Orders from "../pages/Orders";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
         path: "/CheckOutPage",
         element: <CheckoutPage />,
       },
+      {
+        path: '/orders',
+        element: <Orders />,
+      }
     ],
   },
   {
