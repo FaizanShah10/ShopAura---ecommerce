@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import Products from "../../public/Products.json";
 
 import Stack from '@mui/material/Stack';
@@ -11,6 +11,9 @@ import { HiStar, HiOutlineStar } from "react-icons/hi2";
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../redux/features/cartSlice';
 import { useGetAllProductsQuery } from '../../../Backend/auth/productApi';
+
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const filters = {
   
@@ -29,7 +32,31 @@ const filters = {
 
 const Shop = () => {
 
+  const shopRef = useRef([])
+
+
+
   const { data: products = [], error, isLoading } = useGetAllProductsQuery(); 
+
+  useEffect(() => {
+    
+    gsap.fromTo(
+      shopRef.current,
+      { opacity: 0, y: -50 }, // Start state for each row
+      {
+        opacity: 1,
+        y: 0, // End state
+        duration: 0.6,
+        stagger: 0.2, // Stagger each row by 0.2 seconds
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: shopRef.current[0], // Only trigger when the first row comes into view
+          start: 'top 80%',
+          toggleActions: 'play none none none',
+        },
+      }
+    );
+  }, [products]);
 
   const navigate = useNavigate() 
   const dispatch = useDispatch();
@@ -63,12 +90,15 @@ const Shop = () => {
         <div className='w-full  bg-white shadow-lg'>
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 lg:px-8 py-8'>
             {products.length > 0 ? (
-              products.map((product) => {
+              products.map((product, index) => {
                 const filledStars = Math.floor(product.rating);
                 const emptyStars = 5 - filledStars;
 
                 return (
-                  <Link  key={product._id} className='relative hover:scale-105 transition-transform duration-300'>
+                  <Link  
+                  key={product._id} 
+                  ref={(el) => (shopRef.current[index] = el)}
+                  className='relative hover:scale-105 transition-transform duration-300'>
                     <img
                       onClick={() => navigate(`/product/${product._id}`)}
                       className='w-full h-48 object-cover rounded-sm'

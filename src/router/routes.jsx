@@ -12,15 +12,15 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 
 // Admin Components
-import Dashboard from "../pages/Admin/Dashboard";
-import ManageOrders from "../pages/Admin/ManageOrders";
-import ManageUsers from "../pages/Admin/ManageUsers";
-import AddNewItem from "../pages/Admin/AddNewItem";
+import Dashboard from "../pages/AdminDashboard/Dashboard";
+import ManageOrders from "../pages/AdminDashboard/ManageOrders";
+import ManageUsers from "../pages/AdminDashboard/ManageUsers";
+import AddNewItem from "../pages/AdminDashboard/AddNewItem";
 import DashboardLayout from "../layouts/DashboardLayout";
 import CheckoutPage from "../pages/CheckoutPage";
 import Category from "../pages/Category";
-import Products from "../pages/Admin/Products";
-import EditProduct from "../pages/Admin/EditProduct";
+import Products from "../pages/AdminDashboard/Products";
+import EditProduct from "../pages/AdminDashboard/EditProduct";
 
 const router = createBrowserRouter([
   {
