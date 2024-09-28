@@ -29,7 +29,7 @@ const Orders = () => {
               <thead>
                 <tr>
                   <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Order Id</th>
-                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 text-sm'>Product Name</th>
+                  <th className='text-left font-[Gilroy-Bold] px-4 py-2 text-sm'>Product Details</th>
                   <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Order Date</th>
                   <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Price</th>
                   {/* <th className='text-left font-[Gilroy-Bold] px-4 py-2 w-1/4 text-sm'>Total Amount</th> */}
@@ -49,7 +49,9 @@ const Orders = () => {
                         {
                             order.productInfo.map((product, index) => (
                                 <li key={index} className="mb-4 list-none">
-                                    <p className="font-bold">{product.name}</p>
+                                    <p className="text-sm"><span className='font-semibold'>Name:</span> {product.name}</p>
+                                    <p className="text-sm"><span className='font-semibold'>Quantity:</span> {product.quantity}</p>
+                                    <p className="text-sm"><span className='font-semibold'>Price per unit:</span> {product.price}</p>
                                 </li>  
                             ))
                         }

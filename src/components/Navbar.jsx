@@ -65,8 +65,6 @@ const Navbar = () => {
 
 
       const userMenuOptions = [
-        {label: "Dashboard", path: 'dashboard'},
-        {label: "Profile", path: 'profile'},
         {label: "Orders", path: 'orders'},
         
       ]
