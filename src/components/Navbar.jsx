@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 
 import {Link, useNavigate} from 'react-router-dom'
-import {removeFromCart, updateCartItems} from '../redux/features/cartSlice'
+import {clearCart, removeFromCart, updateCartItems} from '../redux/features/cartSlice'
 import { useLogoutUserMutation } from '../../../Backend/auth/cartApi';
 import { removeUser } from '../redux/features/authSlice';
 
@@ -25,7 +25,6 @@ const Navbar = () => {
 
     const [showMenu, setShowMenu] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const [products, setProducts] = useState(cartItems)
     const [openAccount, setOpenAccount] = useState(false)
 
     const handleShowAccount = () => {
@@ -56,6 +55,7 @@ const Navbar = () => {
         try {
           await logoutUser().unwrap(); 
           dispatch(removeUser())
+          dispatch(clearCart())
         //   console.log("User logged out successfully");
           navigate('/login'); 
         } catch (error) {

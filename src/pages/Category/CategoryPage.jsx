@@ -3,13 +3,19 @@ import {useParams, Link} from "react-router-dom"
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { HiStar, HiOutlineStar } from "react-icons/hi2";
 
-import Products from "../../../public/Products.json"
-
-
+import { useGetAllProductsQuery } from '../../../../Backend/auth/productApi';
+import { addToCart } from '../../redux/features/cartSlice';
 
 import Footer from "../../components/Footer"
+import { useDispatch } from 'react-redux';
+
 
 const CategoryPage = () => {
+
+  const { data: products = [], error, isLoading } = useGetAllProductsQuery(); 
+
+  const dispatch = useDispatch()
+
 
   const {categoryName} = useParams()
   // console.log(categoryName)
@@ -17,14 +23,12 @@ const CategoryPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([])
 
   useEffect(() => {
-    const filtered = Products.filter((product) => product.category === categoryName)
+    const filtered = products.filter((product) => product.category === categoryName)
     setFilteredProducts(filtered)
   }, [categoryName])
 
-  // console.log(filteredProducts)
 
-  
-  
+
   return (
     <>
     <div className='w-full min-h-screen bg-gray-200'>
@@ -38,11 +42,11 @@ const CategoryPage = () => {
           const emptyStars = 5 - filledStars;
 
           return (
-            <Link to={`/shop/${product.id}`} key={product.id} className='w-38 h-38 relative hover:scale-105 transition-all duration-300'>
+            <Link to={`/product/${product._id}`} key={product.id} className='w-38 h-38 relative hover:scale-105 transition-all duration-300'>
               <img className='h-56 w-96 object-cover rounded-sm' src={product.image} alt={product.name} />
               <div className='absolute top-3 right-3'>
-                <button className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
-                    <i className='text-white'><MdOutlineShoppingCart/></i>
+                <button onClick={() => dispatch(addToCart(product))} className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
+                    <i  className='text-white'><MdOutlineShoppingCart/></i>
                 </button>
               </div>
               <div className='text-center mt-4'>

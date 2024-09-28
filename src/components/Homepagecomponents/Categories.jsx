@@ -102,7 +102,7 @@ const Categories = () => {
         {categoriesData.map((category, index) => (
           <Link
             to={`categories/${category.path}`}
-            key={category.id}
+            key={category._id}
             className='flex flex-col items-center hover:scale-105 transition-all duration-300'
             ref={(el) => (categoriesRef.current[index] = el)} // Assign ref to each category element
           >
