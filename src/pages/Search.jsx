@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
-import Products from '../../public/Products.json';
 
 import Stack from '@mui/material/Stack';
 import Pagination from '@mui/material/Pagination';
@@ -9,8 +8,12 @@ import { Link } from 'react-router-dom';
 
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { HiStar, HiOutlineStar } from 'react-icons/hi2';
+import { useGetAllProductsQuery } from '../../../Backend/auth/productApi';
 
 const Search = () => {
+
+   const {data: products = [], error, isLoading} = useGetAllProductsQuery()
+
   const [input, setInput] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 16; // Show 20 items per page
@@ -25,7 +28,7 @@ const Search = () => {
   };
 
   // Filter items based on the search input
-  const filteredItems = Products.filter((product) =>
+  const filteredItems = products.filter((product) =>
     product.name.toLowerCase().includes(input.toLowerCase())
   );
 
