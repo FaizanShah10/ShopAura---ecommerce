@@ -1,4 +1,5 @@
-import { createBrowserRouter } from "react-router-dom";
+import Transition from '../components/transition/Transition';  // Import the Transition component
+import {createBrowserRouter} from 'react-router-dom'
 
 import App from "../App";
 import Home from "../pages/Home";
@@ -27,26 +28,46 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
+    children: [ 
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <Transition>
+            <Home />
+          </Transition>
+        )
       },
       {
         path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/category",
-        element: <Category />,
+        element: (
+          <Transition>
+            <Contact />
+          </Transition>
+        ),
       },
       {
         path: "/shop",
-        element: <Shop />,
+        element: (
+          <Transition>
+            <Shop />
+          </Transition>
+        ),
+      },
+      {
+        path: "/category",
+        element: (
+          <Transition>
+            <Category />,
+          </Transition>
+        )
       },
       {
         path: "/search",
-        element: <Search />,
+        element: (
+          <Transition>
+            <Search />
+          </Transition>
+        )
       },
       {
         path: "/categories/:categoryName",
@@ -63,7 +84,7 @@ const router = createBrowserRouter([
       {
         path: '/orders',
         element: <Orders />,
-      }
+      },
     ],
   },
   {
@@ -78,12 +99,9 @@ const router = createBrowserRouter([
     path: "/edit-product/:productId",
     element: <EditProduct />,
   },
-
-
-  //Admin Dashboard Routes
   {
     path: "/admin",
-    element: <DashboardLayout />, // Using DashboardLayout as the wrapper for admin routes
+    element: <DashboardLayout />,
     children: [
       {
         path: "dashboard",
@@ -104,7 +122,7 @@ const router = createBrowserRouter([
       {
         path: "add-new-product",
         element: <AddNewItem />,
-      }
+      },
     ],
   },
 ]);

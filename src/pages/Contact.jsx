@@ -4,7 +4,7 @@ import CustomerSupport from '../assets/customersupport.jpg'
 const Contact = () => {
   return (
     <div>
-      <div className='w-full lg:h-[20vw] md:h-[30vw] sm:h-[30vw] h-50vw relative'>
+      <div className='w-full lg:h-[20vw] md:h-[30vw] sm:h-[30vw] h-50vw relative mt-24'>
         <img className='w-full h-full object-cover' src={CustomerSupport} alt="" />
         <h2 className='absolute inset-0 lg:p-20 text-center pt-20 font-[Gilroy-Bold] lg:text-7xl text-3xl text-white'>Customer Support</h2>
       </div>
@@ -19,7 +19,7 @@ const Contact = () => {
           <a href='#' className='text-gray-400 font-[Gilroy-Medium]'>International</a>
         </div>
         <div>
-          <h2 className='font-[Gilroy-Medium] text-4xl pb-10 text-center'>Contact Us</h2>
+          <h2 className='font-[Gilroy-Medium] text-4xl pb-10 text-center text-white'>Contact Us</h2>
           <input type="text" placeholder='Subject' className='border-b-2 pb-3 text-sm w-full mb-5 font-[Gilroy-Medium] outline-none'/>
           <input type="text" placeholder='Name' className='border-b-2 pb-3 text-sm w-full mb-5 font-[Gilroy-Medium] outline-none' />
           <input type="email" placeholder='Email' className='border-b-2 pb-3 text-sm w-full mb-5 font-[Gilroy-Medium] outline-none'/>

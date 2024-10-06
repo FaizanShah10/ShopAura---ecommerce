@@ -27,7 +27,7 @@ const Banner = () => {
                     disableOnInteraction: false,
                 }}
                 speed={1500} 
-                modules={[Autoplay, Pagination, Navigation]}
+                modules={[Autoplay]}
                 onAutoplayTimeLeft={onAutoplayTimeLeft}
                 loop={true}
             >

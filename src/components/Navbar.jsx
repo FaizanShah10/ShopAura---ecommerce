@@ -56,8 +56,8 @@ const Navbar = () => {
           await logoutUser().unwrap(); 
           dispatch(removeUser())
           dispatch(clearCart())
-        //   console.log("User logged out successfully");
-          navigate('/login'); 
+          setOpenAccount(false)
+          navigate('/'); 
         } catch (error) {
           console.log("Logout failed:", error.message || error);
         }
@@ -78,7 +78,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="bg-zinc-900 shadow-md antialiased z-10 w-full">
+            <nav className="bg-zinc-900 shadow-md antialiased z-10 relative w-full">
                 <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-8">
@@ -146,18 +146,18 @@ const Navbar = () => {
 
                     {/* Conditionally apply the "hidden" class based on the state */}
                     <div id="ecommerce-navbar-menu-1" className={`${showMenu ? '' : 'hidden'} bg-gray-50 dark:bg-white dark:border-white border border-gray-200 rounded-lg py-3 px-4 mt-4`}>
-                        <ul className="text-white dark:text-white text-sm font-medium space-y-3">
+                        <ul className=" dark:text-white text-sm font-medium space-y-3">
                             <li>
-                                <a href="/" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Home</a>
+                                <a href="/" className="hover:text-[#9A0000] text-black dark:hover:text-[#9A0000]">Home</a>
                             </li>
                             <li>
-                                <a href="/shop" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Shop</a>
+                                <a href="/shop" className="hover:text-[#9A0000] text-black dark:hover:text-[#9A0000]">Shop</a>
                             </li>
                             <li>
-                                <a href="/category" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Categories</a>
+                                <a href="/category" className="hover:text-[#9A0000] text-black dark:hover:text-[#9A0000]">Categories</a>
                             </li>
                             <li>
-                                <a href="/contact" className="hover:text-[#9A0000] dark:hover:text-[#9A0000]">Contact</a>
+                                <a href="/contact" className="hover:text-[#9A0000] text-black dark:hover:text-[#9A0000]">Contact</a>
                             </li>
                         </ul>
                     </div>
