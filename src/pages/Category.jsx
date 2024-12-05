@@ -121,7 +121,7 @@ const Category = () => {
   };
 
   return (
-    <div className='w-full min-h-screen bg-white'>
+    <div className='w-full min-h-screen bg-white mt-24'>
       <h2 className='text-center text-3xl font-[Gilroy-Bold] pt-4'>Shop by category</h2>
 
       <div className='flex flex-col lg:flex-row'>

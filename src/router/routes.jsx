@@ -23,6 +23,8 @@ import Category from "../pages/Category";
 import Products from "../pages/AdminDashboard/Products";
 import EditProduct from "../pages/AdminDashboard/EditProduct";
 import Orders from "../pages/Orders";
+import Success from '../pages/Success';
+import Cancel from '../pages/Cancel';
 
 const router = createBrowserRouter([
   {
@@ -32,9 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Transition>
-            <Home />
-          </Transition>
+            <Home />  
         )
       },
       {
@@ -96,9 +96,18 @@ const router = createBrowserRouter([
     element: <Register />,
   },
   {
+    path: '/success',
+    element: <Success />,
+  },
+  {
+    path: '/cancel',
+    element: <Cancel />,
+  },
+  {
     path: "/edit-product/:productId",
     element: <EditProduct />,
   },
+  //admin routes
   {
     path: "/admin",
     element: <DashboardLayout />,
