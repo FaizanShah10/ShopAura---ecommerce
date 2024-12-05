@@ -1,9 +1,11 @@
 import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCart } from '../redux/features/cartSlice';
 
 const PaymentForm = ({ amount, address, onPaymentSuccess, cartItems }) => {
+    const dispatch = useDispatch()
     const { user } = useSelector((state) => state.auth);
     // console.log("LoggedIn User: ", user)
     const stripe = useStripe();
@@ -79,7 +81,6 @@ const PaymentForm = ({ amount, address, onPaymentSuccess, cartItems }) => {
             const orderResult = await orderResponse.json();
     
             if (orderResult.sessionId) {
-                // Redirect to Stripe Checkout
                 const result = await stripe.redirectToCheckout({
                     sessionId: orderResult.sessionId, 
                 });
@@ -87,6 +88,8 @@ const PaymentForm = ({ amount, address, onPaymentSuccess, cartItems }) => {
                 if (result.error) {
                     console.error('Error redirecting to checkout:', result.error);
                     toast.error('Error placing order. Please try again.');
+                } else {
+                    dispatch(clearCart())
                 }
             } else {
                 toast.error('Error placing order. No sessionId returned.');

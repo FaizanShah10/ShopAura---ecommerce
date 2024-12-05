@@ -10,7 +10,7 @@ import { usePlaceOrderMutation } from '../../../Backend/auth/orderApi';
 import PaymentForm from './PaymentForm';
 
 // Load Stripe with your publishable key
-const stripePromise = loadStripe('pk_test_51OvkHY00BKfqzn3tqBFngD894dCM8WBocZBE4QdPTSPjKNbp50Z4HameEHFnuoMBn1bQ9NcE7CW0OuRrFK1Cai1700Wq2nGcJP');
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutPage = () => {
     const dispatch = useDispatch();
@@ -147,7 +147,7 @@ const CheckoutPage = () => {
                         <div className="mt-8">
                             <h3 className="text-xl font-[Gilroy-Bold] mb-4">Payment</h3>
                             <PaymentForm
-                                amount={grandTotal * 100}
+                                amount={grandTotal.toFixed(2) * 100}
                                 cartItems={cartItems}
                                 address={address}
                                 onPaymentSuccess={handlePaymentSuccess}
