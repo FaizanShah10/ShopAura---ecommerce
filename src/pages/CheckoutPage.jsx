@@ -9,7 +9,6 @@ import { clearCart } from '../redux/features/cartSlice';
 import { usePlaceOrderMutation } from '../../../Backend/auth/orderApi';
 import PaymentForm from './PaymentForm';
 
-// Load Stripe with your publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const CheckoutPage = () => {
@@ -40,7 +39,6 @@ const CheckoutPage = () => {
             totalAmount: grandTotal,
         })
             .then(() => {
-                toast.success("Order Placed Successfully!!");
                 dispatch(clearCart());
                 setAddress({
                     street: '',

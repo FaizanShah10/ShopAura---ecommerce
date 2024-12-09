@@ -22,6 +22,10 @@ const Navbar = () => {
 
     // Access cart data from Redux
     const { cartItems, totalProducts, totalAmount, tax, grandTotal } = useSelector((state) => state.cart);
+    
+    useEffect(() => {
+        console.log("Cart items: ", cartItems)
+    }, [])
 
     const [showMenu, setShowMenu] = useState(false);
     const [isCartOpen, setIsCartOpen] = useState(false);
@@ -199,7 +203,7 @@ const Navbar = () => {
                                                     <button onClick={() => handleUpdateCart(item.id, item.quantity + 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>+</button>
                                                 </div>
 
-                                                <p onClick={() => handleRemoveItems(item.id)} className='text-sm text-red-500 mt-3 ml-10 cursor-pointer'>Remove</p>
+                                                <p onClick={() => handleRemoveItems(item._id)} className='text-sm text-red-500 mt-3 ml-10 cursor-pointer'>Remove</p>
                                             </div>
                                         ))
                                     }
