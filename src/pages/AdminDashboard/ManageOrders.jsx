@@ -30,6 +30,7 @@ const ManageOrders = () => {
   }, []);
 
   const { data: orders = [], error, isLoading } = useFetchAllOrdersQuery();
+  console.log("Orders: ", orders)
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -81,8 +82,8 @@ const ManageOrders = () => {
                       <td className='px-4 py-2'>{order.userName}</td>
                       <td className='px-4 py-2'>{new Date(order.orderDate).toLocaleDateString()}</td>
                       <td className='px-4 py-2'>
-                        <span className={`px-2 py-1 rounded ${getStatusClass(order.orderSatus)}`}>
-                          {order.orderSatus.charAt(0).toUpperCase() + order.orderSatus.slice(1)}
+                        <span className={`px-2 py-1 rounded ${getStatusClass(order.orderStatus)}`}>
+                          {order.orderStatus.charAt(0).toUpperCase() + order.orderStatus.slice(1)}
                         </span>
                       </td>
                       <td className='px-4 py-2'>${order.totalAmount.toFixed(2)}</td>
