@@ -118,7 +118,7 @@ const TrendingProducts = () => {
             className='w-38 h-38 relative hover:scale-105 transition-all duration-300'
             ref={(el) => (ProductsRef.current[index] = el)}
             >
-              <img onClick={() => navigate(`/product/${product._id}`)} className='h-56 w-96 object-cover rounded-sm' src={product.image} alt={product.name} />
+              <img onClick={() => navigate(`/product/${product._id}`)} className='h-56 w-96 object-cover rounded-sm hover:scale-105 transition-all duration-300' src={product.image} alt={product.name} />
               <div className='absolute top-3 right-3'>
                 <button className='w-7 h-7 bg-red-700 hover:bg-red-800 rounded-full flex items-center justify-center'>
                   <i onClick={() => dispatch(addToCart(product))} className='text-white'><MdOutlineShoppingCart /></i>
@@ -146,7 +146,7 @@ const TrendingProducts = () => {
         })}
       </div>
       <div className='flex justify-center mb-10'>
-        <Link to={`/shop`} className='hover:bg-red-800 duration-200 px-4 py-2 rounded-md bg-red-700 text-white font-semibold'>Show All Products</Link>
+        <a href={`/shop`} className='hover:bg-red-800 duration-200 px-4 py-2 rounded-md bg-red-700 text-white font-semibold'>Show All Products</a>
       </div>
     </div>
   );

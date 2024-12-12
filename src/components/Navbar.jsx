@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IoSearch } from "react-icons/io5";
 import { TbLogout2 } from "react-icons/tb";
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,10 +8,25 @@ import {Link, useNavigate} from 'react-router-dom'
 import {clearCart, removeFromCart, updateCartItems} from '../redux/features/cartSlice'
 import { useLogoutUserMutation } from '../../../Backend/auth/cartApi';
 import { removeUser } from '../redux/features/authSlice';
+import gsap from 'gsap'
 
 
 
 const Navbar = () => {
+    const navRef = useRef()
+
+    useEffect(() => {
+        gsap.fromTo(
+            navRef.current,
+          { opacity: 0, y:-50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.9,
+            ease: 'power1.out',
+          }
+        )
+      }, [])
     
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -47,8 +62,8 @@ const Navbar = () => {
         dispatch(removeFromCart(id))
     }
 
-    const handleUpdateCart = (id, newQuantity) => {
-        dispatch(updateCartItems({id, quantity: newQuantity}))
+    const handleUpdateCart = (productId, newQuantity) => {
+        dispatch(updateCartItems({id: productId, quantity: newQuantity}))
     }
 
     const [logoutUser] = useLogoutUserMutation()
@@ -82,7 +97,7 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="bg-zinc-900 shadow-md antialiased z-10 relative w-full">
+            <nav ref={navRef} className="bg-zinc-900 shadow-md antialiased z-10 relative w-full">
                 <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 py-4">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center space-x-8">
@@ -198,9 +213,9 @@ const Navbar = () => {
                                                 </div>
 
                                                 <div className='flex gap-2 mt-3 ml-10'>
-                                                    <button onClick={() => handleUpdateCart(item.id, item.quantity - 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>-</button>
+                                                    <button onClick={() => handleUpdateCart(item._id, item.quantity - 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>-</button>
                                                     <p>{item.quantity}</p>
-                                                    <button onClick={() => handleUpdateCart(item.id, item.quantity + 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>+</button>
+                                                    <button onClick={() => handleUpdateCart(item._id, item.quantity + 1)} className='w-5 h-5 flex items-center justify-center rounded-full bg-red-700 text-white'>+</button>
                                                 </div>
 
                                                 <p onClick={() => handleRemoveItems(item._id)} className='text-sm text-red-500 mt-3 ml-10 cursor-pointer'>Remove</p>

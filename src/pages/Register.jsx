@@ -1,12 +1,28 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import {useNavigate} from 'react-router-dom'
 import { useRegisterUserMutation } from '../../../Backend/auth/cartApi'
 import { useDispatch } from 'react-redux'
 import { setUser } from '../redux/features/authSlice'
+import gsap from 'gsap'
 
 const Register = () => {
+  const registerRef = useRef()
+
+  useEffect(() => {
+    gsap.fromTo(
+      registerRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+      }
+    )
+  }, [])
+
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -48,7 +64,7 @@ const Register = () => {
       <section className="bg-gray-50 dark:bg-">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             
-            <div className="w-full bg-white rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white shadow-lg">
+            <div ref={registerRef} className="w-full rounded-lg  dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white shadow-lg">
                 <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
                         Create your <span className='text-red-700'>ShopAura</span> account

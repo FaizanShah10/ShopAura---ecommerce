@@ -8,6 +8,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { clearCart } from '../redux/features/cartSlice';
 import { usePlaceOrderMutation } from '../../../Backend/auth/orderApi';
 import PaymentForm from './PaymentForm';
+import { getCode } from 'country-list'; // Import country-list library
 
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
@@ -31,10 +32,20 @@ const CheckoutPage = () => {
     };
 
     const handlePaymentSuccess = () => {
+        const countryCode = getCode(address.country); // Convert full country name to country code
+
+        if (!countryCode) {
+            toast.error("Invalid country name. Please enter a valid country.");
+            return;
+        }
+
         placeOrder({
             userId: user?.userId,
             userName: user?.fullName,
-            address,
+            address: {
+                ...address,
+                country: countryCode, // Use country code instead of full name
+            },
             productInfo: cartItems,
             totalAmount: grandTotal,
         })
@@ -47,6 +58,7 @@ const CheckoutPage = () => {
                     postalCode: '',
                     country: '',
                 });
+                toast.success("Order placed successfully!");
             })
             .catch(() => {
                 toast.error("Error Placing Order!!");
@@ -110,7 +122,7 @@ const CheckoutPage = () => {
                                     <div>
                                         <input
                                             type="text"
-                                            placeholder="Country"
+                                            placeholder="Enter your country Iso code i.e Pk/US"
                                             name="country"
                                             value={address.country}
                                             onChange={handleAddressChange}

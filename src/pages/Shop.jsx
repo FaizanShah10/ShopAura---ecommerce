@@ -101,7 +101,7 @@ const Shop = () => {
                   className='relative hover:scale-105 transition-transform duration-300'>
                     <img
                       onClick={() => navigate(`/product/${product._id}`)}
-                      className='w-full h-48 object-cover rounded-sm'
+                      className='w-full h-48 object-cover rounded-sm hover:scale-105 transition-all duration-300'
                       src={product.image}
                       alt={product.name}
                     />

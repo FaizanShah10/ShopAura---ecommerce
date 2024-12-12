@@ -60,9 +60,11 @@ export const cartSlice = createSlice({
             saveCartToLocalStorage(state);
         },       
         updateCartItems: (state, action) => {
-            const { _id, quantity } = action.payload;  // Expecting _id and quantity in the payload
+            const { id, quantity } = action.payload; 
+            const productInfo = action.payload
+            console.log("Product: ", productInfo)
         
-            const product = state.cartItems.find((item) => item._id === _id);
+            const product = state.cartItems.find((item) => item._id === id);
         
             if (product && quantity > 0) {
                 const quantityDifference = quantity - product.quantity;

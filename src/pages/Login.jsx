@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router';
 import {useDispatch } from 'react-redux'
 import { useLoginUserMutation } from '../../../Backend/auth/cartApi';
 import { setUser } from '../redux/features/authSlice';
+import gsap from 'gsap'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -11,6 +12,20 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
   const [loginUser] = useLoginUserMutation(); 
   const [errorMessage, setErrorMessage] = useState('');
+  const loginRef = useRef()
+
+  useEffect(() => {
+    gsap.fromTo(
+      loginRef.current,
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+      }
+    )
+  }, [])
 
   const handleLogin = async (data) => {
     // console.log(data)
@@ -28,9 +43,9 @@ const Login = () => {
 
   return (
     <div>
-      <section className="bg-gray-50 dark:bg-">
+      <section className="bg-gray-50">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div className="w-full bg-white rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white shadow-lg">
+          <div ref={loginRef} className="w-full rounded-lg dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white shadow-lg">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-black">
                 Login
